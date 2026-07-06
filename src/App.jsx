@@ -39,8 +39,6 @@ function App() {
       </header>
 
       <main className="flex-1 px-4 py-8 sm:px-8">
-        <SeoIntro />
-
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <InputPanel
@@ -65,6 +63,8 @@ function App() {
                 <CashFlowChart projection={projection} crossoverYear={crossoverYear} />
               </div>
             </section>
+
+            <SeoIntro />
 
             <FaqAccordion />
           </div>
