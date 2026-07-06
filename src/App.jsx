@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import InputPanel from './components/InputPanel.jsx'
 import ResultsSummary from './components/ResultsSummary.jsx'
 import CashFlowChart from './components/CashFlowChart.jsx'
+import FaqAccordion from './components/FaqAccordion.jsx'
 import Footer from './components/Footer.jsx'
 import { calculateSolarMetrics, generateCashFlowProjection } from './utils/solarMath.js'
 
@@ -61,6 +62,8 @@ function App() {
                 <CashFlowChart projection={projection} crossoverYear={crossoverYear} />
               </div>
             </section>
+
+            <FaqAccordion />
           </div>
         </div>
       </main>
