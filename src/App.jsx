@@ -4,6 +4,7 @@ import ResultsSummary from './components/ResultsSummary.jsx'
 import CashFlowChart from './components/CashFlowChart.jsx'
 import FaqAccordion from './components/FaqAccordion.jsx'
 import Footer from './components/Footer.jsx'
+import SeoIntro from './components/SeoIntro.jsx'
 import { calculateSolarMetrics, generateCashFlowProjection } from './utils/solarMath.js'
 
 function App() {
@@ -38,6 +39,8 @@ function App() {
       </header>
 
       <main className="flex-1 px-4 py-8 sm:px-8">
+        <SeoIntro />
+
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <InputPanel

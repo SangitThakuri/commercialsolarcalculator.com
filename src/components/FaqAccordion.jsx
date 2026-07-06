@@ -2,32 +2,30 @@ import { useState } from 'react'
 
 const FAQ_ITEMS = [
   {
-    id: 'itc-basis-reduction',
+    id: 'itc-eligibility',
     question:
-      'How is the Section 48E Investment Tax Credit calculated, and why does it reduce my depreciable basis?',
+      'How does the 30% Federal Investment Tax Credit (ITC) apply to business properties under Section 48E?',
     answer:
-      "The Section 48E Clean Electricity Investment Credit applies a base rate to the eligible cost basis of your solar system, which this calculator models at 30% (the rate typically available when prevailing wage and apprenticeship requirements are met, or for systems under 1 MW). Under IRC Section 50(c), a taxpayer who claims the ITC must reduce the asset's depreciable basis by one-half of the credit claimed. That is why our Depreciable Basis figure equals your Gross System Cost minus 50% of the ITC amount, not the full credit — this is a statutory basis-reduction rule, not a calculator simplification.",
+      'The Section 48E Clean Electricity Investment Credit is the federal ITC framework for commercial solar systems placed in service after 2024. Its base rate is 6% of eligible cost basis, stepping up to 30% once a project satisfies the prevailing wage and apprenticeship (PWA) requirements — though most commercial systems under 1 MW (AC) are automatically exempt from PWA and qualify for the full 30% rate outright. Because the credit offsets federal tax liability dollar-for-dollar, it directly reduces the net capital your business needs to finance up front, which is why this calculator applies it before computing your Net Capital Required. One important wrinkle: under IRC Section 50(c), claiming the ITC also requires reducing the asset\'s depreciable basis by half of the credit amount, which is reflected in the Depreciable Basis figure above.',
   },
   {
-    id: 'macrs-schedule',
-    question:
-      'Why does this tool use a 5-year MACRS schedule, and how is the tax shield estimated?',
+    id: 'macrs-tax-shield',
+    question: 'What is MACRS 5-Year Depreciation and how does it generate a corporate tax shield?',
     answer:
-      'Commercial solar energy property is classified as 5-year property under the Modified Accelerated Cost Recovery System (MACRS), per IRS guidance in Publication 946 and Section 168. In practice, the IRS half-year convention spreads that 5-year schedule across 6 tax years with declining-balance percentages (20%, 32%, 19.2%, 11.52%, 11.52%, 5.76%). To keep the dashboard responsive while you adjust inputs, this calculator estimates the total MACRS Tax Shield as a single blended figure: your reduced depreciable basis multiplied by a combined 21% federal and your selected state corporate tax rate. This approximates the present-value benefit of accelerated depreciation rather than itemizing each of the 6 tax years individually.',
+      'The Modified Accelerated Cost Recovery System (MACRS) is the IRS-prescribed depreciation method under Section 168, and commercial solar equipment is classified as 5-year property — a much faster recovery period than the 39 years used for most commercial real property. Under the standard half-year convention, that schedule spreads across 6 tax years at declining-balance percentages of roughly 20%, 32%, 19.2%, 11.52%, 11.52%, and 5.76%. Each year\'s depreciation deduction reduces taxable income, and multiplying that deduction by your combined federal and state corporate tax rate produces a real, cash "tax shield." To keep this dashboard responsive as you adjust inputs, we model the full schedule as one blended figure — your reduced depreciable basis multiplied by a combined 21% federal and your selected state tax rate — rather than itemizing each of the 6 years individually.',
   },
   {
     id: 'utility-inflation',
-    question:
-      'What utility rate inflation assumption drives the 25-year cumulative cash flow projection?',
+    question: 'Does this commercial solar calculator account for utility rate inflation trends?',
     answer:
-      'The cash flow chart compounds your current annual electricity savings at 3% per year for 25 years, reflecting the long-run historical average growth rate of U.S. commercial electricity rates. Because this compounding effect is applied every year of the projection, small changes to this assumption meaningfully shift the crossover (payback) year on the chart. Actual utility rate escalation varies significantly by region, utility provider, and rate class, so businesses in high-growth utility territories may see a faster payback than this baseline model suggests.',
+      'Yes. The 25-year cumulative cash flow chart compounds your current annual electricity savings at 3% per year, consistent with the long-run historical average growth rate of U.S. commercial electricity rates. Because this compounding effect applies every year of the projection, even small changes to the inflation assumption can meaningfully shift the crossover (payback) year shown on the chart. Actual utility rate escalation varies by region, provider, and rate class, so businesses served by utilities with faster-than-average rate growth may reach payback sooner than this baseline model suggests.',
   },
   {
-    id: 'model-scope',
+    id: 'bonus-adders',
     question:
-      'Does this calculator account for financing costs, state-level incentives, or interconnection fees?',
+      'Are there additional tax credit adders for using domestic content or operating in energy communities?',
     answer:
-      'No. This is a planning-grade model that assumes an all-cash system purchase and does not incorporate loan interest, lease/PPA structures, state or utility rebates, Solar Renewable Energy Certificates (SRECs), property tax exemptions, or interconnection and utility upgrade costs. These factors can materially change your net capital outlay and payback period. We recommend using these results as a directional starting point and consulting a licensed solar engineer and a qualified tax professional for a site-specific proposal.',
+      'Yes — Section 48E allows several bonus adders on top of the base credit rate. A Domestic Content Bonus adds 10 percentage points when a required share of the project\'s steel, iron, and manufactured components are produced in the United States. An Energy Community Bonus adds another 10 percentage points for projects sited in areas with historical fossil-fuel employment, brownfield sites, or closed coal facilities. A separate, capacity-limited Low-Income Communities Bonus (Section 48E(h)) can add 10–20 points for qualifying allocations. Stacked together, an eligible commercial project can reach a total credit well above the 30% baseline. This calculator intentionally models the 30% base rate only, since bonus eligibility depends on project-specific sourcing, siting, and a competitive allocation process — confirm applicability with your EPC contractor and tax advisor before assuming a higher rate.',
   },
 ]
 
