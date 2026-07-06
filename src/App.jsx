@@ -3,7 +3,6 @@ import InputPanel from './components/InputPanel.jsx'
 import ResultsSummary from './components/ResultsSummary.jsx'
 import CashFlowChart from './components/CashFlowChart.jsx'
 import Footer from './components/Footer.jsx'
-import ResidentialRedirectCard from './components/ResidentialRedirectCard.jsx'
 import { calculateSolarMetrics, generateCashFlowProjection } from './utils/solarMath.js'
 
 function App() {
@@ -67,7 +66,6 @@ function App() {
       </main>
 
       <Footer />
-      <ResidentialRedirectCard />
     </div>
   )
 }
