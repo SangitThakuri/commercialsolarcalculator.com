@@ -83,7 +83,7 @@ function FaqAccordion() {
 
   return (
     <section
-      className="rounded-2xl bg-white p-6 shadow-lg sm:p-8"
+      className="animate-fade-in-up rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8 print:shadow-none print:ring-0"
       aria-label="Frequently asked questions"
     >
       <h2 className="text-lg font-semibold text-slate-900">Frequently Asked Questions</h2>

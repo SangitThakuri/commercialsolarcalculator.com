@@ -51,6 +51,7 @@ function CashFlowChart({ projection, crossoverYear }) {
                 height={barHeight}
                 fill={isCrossoverYear ? '#059669' : isPositive ? '#10b981' : '#94a3b8'}
                 rx={2}
+                className="transition-all duration-500 ease-out"
               />
               {(point.year === 1 || point.year % 5 === 0) && (
                 <text

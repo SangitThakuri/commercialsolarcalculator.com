@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import InfoTooltip from './InfoTooltip.jsx'
 
 const US_STATES = [
   'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut',
@@ -16,16 +17,22 @@ function StateDropdown() {
 
   return (
     <div>
-      <label htmlFor="property-state" className="text-sm font-medium text-slate-700">
-        Property Location (State)
-      </label>
+      <div className="flex items-center gap-1.5">
+        <label htmlFor="property-state" className="text-sm font-medium text-slate-700">
+          Property Location (State)
+        </label>
+        <InfoTooltip
+          id="property-state-tooltip"
+          text="For your reference only — this does not automatically change the tax rate below. Set your state's corporate tax rate separately using the slider."
+        />
+      </div>
       <div className="relative mt-2">
         <select
           id="property-state"
           value={selectedState}
           onChange={(event) => setSelectedState(event.target.value)}
           aria-label="Property location state"
-          className="w-full appearance-none rounded-lg border border-slate-200 bg-slate-50 py-2.5 pl-3 pr-9 text-sm font-medium text-slate-700 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
+          className="w-full appearance-none rounded-lg border border-slate-200 bg-slate-50 py-2.5 pl-3 pr-9 text-sm font-medium text-slate-700 transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
         >
           {US_STATES.map((state) => (
             <option key={state} value={state}>
@@ -46,9 +53,10 @@ function StateDropdown() {
   )
 }
 
-function SliderNumberField({
+export function SliderNumberField({
   id,
   label,
+  tooltip,
   value,
   onChange,
   min,
@@ -59,34 +67,55 @@ function SliderNumberField({
   ariaLabel,
   minCaption,
   maxCaption,
+  formatValue = (v) => String(v),
 }) {
-  const [draft, setDraft] = useState(String(value))
+  const [draft, setDraft] = useState(formatValue(value))
+  const [isDragging, setIsDragging] = useState(false)
+  const [validationHint, setValidationHint] = useState(null)
   const isEditingRef = useRef(false)
+  const hintTimeoutRef = useRef(null)
 
   useEffect(() => {
     if (!isEditingRef.current) {
-      setDraft(String(value))
+      setDraft(formatValue(value))
     }
-  }, [value])
+  }, [value, formatValue])
+
+  useEffect(() => () => clearTimeout(hintTimeoutRef.current), [])
 
   const percent = ((value - min) / (max - min)) * 100
 
+  const flashValidationHint = (message) => {
+    setValidationHint(message)
+    clearTimeout(hintTimeoutRef.current)
+    if (message) {
+      hintTimeoutRef.current = setTimeout(() => setValidationHint(null), 2600)
+    }
+  }
+
   const commitDraft = (raw) => {
     const parsed = parseFloat(raw)
-    if (Number.isFinite(parsed)) {
-      const clamped = Math.min(max, Math.max(min, parsed))
-      onChange(clamped)
-      return clamped
+    if (!Number.isFinite(parsed)) return null
+
+    const clamped = Math.min(max, Math.max(min, parsed))
+    if (clamped !== parsed) {
+      flashValidationHint(
+        `Adjusted to ${prefix}${formatValue(clamped)}${suffix} — allowed range is ${prefix}${formatValue(min)}${suffix} to ${prefix}${formatValue(max)}${suffix}.`,
+      )
     }
-    return null
+    onChange(clamped)
+    return clamped
   }
 
   return (
     <div>
       <div className="flex items-center justify-between gap-3">
-        <label htmlFor={id} className="text-sm font-medium text-slate-700">
-          {label}
-        </label>
+        <div className="flex items-center gap-1.5">
+          <label htmlFor={id} className="text-sm font-medium text-slate-700">
+            {label}
+          </label>
+          {tooltip && <InfoTooltip id={`${id}-tooltip`} text={tooltip} />}
+        </div>
         <div className="relative">
           {prefix && (
             <span className="pointer-events-none absolute inset-y-0 left-2.5 flex items-center text-sm font-semibold text-slate-400">
@@ -99,6 +128,7 @@ function SliderNumberField({
             value={draft}
             onFocus={() => {
               isEditingRef.current = true
+              setDraft(String(value))
             }}
             onChange={(event) => {
               const raw = event.target.value
@@ -109,10 +139,10 @@ function SliderNumberField({
             onBlur={() => {
               isEditingRef.current = false
               const clamped = commitDraft(draft)
-              setDraft(clamped !== null ? String(clamped) : String(value))
+              setDraft(formatValue(clamped !== null ? clamped : value))
             }}
             aria-label={`${ariaLabel}, exact value`}
-            className={`w-24 rounded-lg border border-slate-200 bg-slate-50 py-1.5 text-right text-sm font-bold text-emerald-600 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 sm:w-28 ${
+            className={`w-24 rounded-lg border border-slate-200 bg-slate-50 py-1.5 text-right text-sm font-bold text-emerald-600 transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 sm:w-28 ${
               prefix ? 'pl-6' : 'pl-3'
             } ${suffix ? 'pr-6' : 'pr-3'}`}
           />
@@ -124,26 +154,47 @@ function SliderNumberField({
         </div>
       </div>
 
-      <input
-        id={id}
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={(event) => {
-          isEditingRef.current = false
-          onChange(Number(event.target.value))
-        }}
-        aria-label={ariaLabel}
-        aria-valuetext={`${prefix}${value}${suffix}`}
-        style={{ '--range-progress': `${percent}%` }}
-        className="premium-slider mt-4 w-full cursor-pointer touch-manipulation"
-      />
+      <div className="relative mt-4">
+        {isDragging && (
+          <span
+            className="pointer-events-none absolute -top-8 -translate-x-1/2 whitespace-nowrap rounded-md bg-slate-900 px-2 py-1 text-xs font-semibold text-white shadow-lg"
+            style={{ left: `${percent}%` }}
+          >
+            {prefix}
+            {formatValue(value)}
+            {suffix}
+          </span>
+        )}
+        <input
+          id={id}
+          type="range"
+          min={min}
+          max={max}
+          step={step}
+          value={value}
+          onChange={(event) => {
+            isEditingRef.current = false
+            onChange(Number(event.target.value))
+          }}
+          onPointerDown={() => setIsDragging(true)}
+          onPointerUp={() => setIsDragging(false)}
+          onKeyDown={() => setIsDragging(true)}
+          onBlur={() => setIsDragging(false)}
+          aria-label={ariaLabel}
+          aria-valuetext={`${prefix}${value}${suffix}`}
+          style={{ '--range-progress': `${percent}%` }}
+          className="premium-slider w-full cursor-pointer touch-manipulation"
+        />
+      </div>
       <div className="mt-1.5 flex justify-between text-xs text-slate-400">
         <span>{minCaption}</span>
         <span>{maxCaption}</span>
       </div>
+      {validationHint && (
+        <p className="mt-1.5 text-xs font-medium text-amber-600" role="status">
+          {validationHint}
+        </p>
+      )}
     </div>
   )
 }
@@ -151,7 +202,7 @@ function SliderNumberField({
 function InputPanel({ monthlyBill, setMonthlyBill, stateTaxRate, setStateTaxRate }) {
   return (
     <section
-      className="rounded-2xl bg-white p-6 shadow-lg sm:p-8"
+      className="animate-fade-in-up rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8 print:shadow-none print:ring-0"
       aria-label="Solar investment inputs"
     >
       <h2 className="text-lg font-semibold text-slate-900">Your Business Inputs</h2>
@@ -162,6 +213,7 @@ function InputPanel({ monthlyBill, setMonthlyBill, stateTaxRate, setStateTaxRate
         <SliderNumberField
           id="monthly-bill"
           label="Average Monthly Electric Bill"
+          tooltip="Enter your average pre-solar monthly electric bill. This single number drives the system sizing and every savings estimate below."
           value={monthlyBill}
           onChange={setMonthlyBill}
           min={500}
@@ -171,11 +223,13 @@ function InputPanel({ monthlyBill, setMonthlyBill, stateTaxRate, setStateTaxRate
           ariaLabel="Average monthly electric bill in US dollars"
           minCaption="$500"
           maxCaption="$50,000"
+          formatValue={(v) => Math.round(v).toLocaleString('en-US')}
         />
 
         <SliderNumberField
           id="tax-rate"
           label="State Corporate Tax Rate"
+          tooltip="Your state's corporate income tax rate. Combined with the 21% federal rate, this sets your MACRS depreciation tax shield."
           value={stateTaxRate * 100}
           onChange={(percent) => setStateTaxRate(percent / 100)}
           min={0}

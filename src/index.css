@@ -35,7 +35,7 @@ input[type='range'].premium-slider::-webkit-slider-thumb {
   border: 3px solid #10b981;
   box-shadow: 0 1px 3px rgba(15, 23, 42, 0.3);
   cursor: pointer;
-  transition: box-shadow 0.15s ease;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
 }
 
 input[type='range'].premium-slider::-moz-range-thumb {
@@ -46,6 +46,15 @@ input[type='range'].premium-slider::-moz-range-thumb {
   border: 3px solid #10b981;
   box-shadow: 0 1px 3px rgba(15, 23, 42, 0.3);
   cursor: pointer;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+input[type='range'].premium-slider:hover::-webkit-slider-thumb {
+  transform: scale(1.12);
+}
+
+input[type='range'].premium-slider:hover::-moz-range-thumb {
+  transform: scale(1.12);
 }
 
 input[type='range'].premium-slider::-moz-range-track {
@@ -66,4 +75,64 @@ input[type='range'].premium-slider:focus-visible::-webkit-slider-thumb {
 
 input[type='range'].premium-slider:focus-visible::-moz-range-thumb {
   box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.3);
+}
+
+/* Entrance + micro-interaction animations */
+@keyframes tooltip-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 4px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.animate-tooltip-in {
+  animation: tooltip-in 0.15s ease-out;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out both;
+}
+
+@keyframes count-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.035);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-count-pulse {
+  animation: count-pulse 0.4s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-tooltip-in,
+  .animate-count-pulse {
+    animation: none !important;
+  }
+
+  input[type='range'].premium-slider::-webkit-slider-thumb,
+  input[type='range'].premium-slider::-moz-range-thumb {
+    transition: none !important;
+  }
 }

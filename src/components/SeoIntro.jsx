@@ -2,7 +2,7 @@ function SeoIntro() {
   return (
     <section
       aria-label="Commercial solar financing overview"
-      className="rounded-2xl bg-white p-6 shadow-lg sm:p-8"
+      className="animate-fade-in-up rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8 print:shadow-none print:ring-0"
     >
       <h2 className="text-xl font-bold text-slate-900 sm:text-2xl">
         Understanding Commercial Solar Financing
