@@ -19,9 +19,10 @@ function MethodologyContent() {
       </p>
       <ul className="list-disc space-y-2 pl-5">
         <li>
-          <strong>System Size:</strong> round((Monthly Bill ÷ $135) × 1.2), in kW — assumes
-          roughly 135 kWh of monthly production per installed kW, sized at 120% of your current
-          load.
+          <strong>System Size:</strong> your monthly bill is converted to estimated monthly kWh
+          usage at a blended $0.13/kWh national average commercial rate, then sized against
+          roughly 135 kWh of monthly production per installed kW at 120% of that usage to allow
+          for future load growth.
         </li>
         <li>
           <strong>Gross System Cost:</strong> System Size × $2,300 per kW, a blended national

@@ -6,12 +6,20 @@ const OFFSET_FACTOR = 0.95
 const PROJECTION_YEARS = 25
 const MONTHLY_PRODUCTION_PER_KW = 135
 const PANEL_DEGRADATION_RATE = 0.005
+// Blended U.S. national average commercial retail electricity rate (EIA), used to convert a
+// dollar bill amount into kWh usage before sizing a system against production-per-kW.
+const AVG_COMMERCIAL_RATE_PER_KWH = 0.13
+
+export function estimateSystemSizeKw(monthlyBill) {
+  const monthlyUsageKwh = monthlyBill / AVG_COMMERCIAL_RATE_PER_KWH
+  return Math.round((monthlyUsageKwh / MONTHLY_PRODUCTION_PER_KW) * 1.2)
+}
 
 // IRS half-year-convention declining-balance percentages for 5-year MACRS property.
 const MACRS_SCHEDULE = [0.2, 0.32, 0.192, 0.1152, 0.1152, 0.0576]
 
 export function calculateSolarMetrics(monthlyBill, stateTaxRate) {
-  const systemSizeKw = Math.round((monthlyBill / MONTHLY_PRODUCTION_PER_KW) * 1.2)
+  const systemSizeKw = estimateSystemSizeKw(monthlyBill)
   const grossCost = systemSizeKw * SYSTEM_COST_PER_KW
   const itcAmount = grossCost * FEDERAL_ITC_RATE
   const depreciableBasis = grossCost - itcAmount * 0.5
@@ -107,7 +115,7 @@ const SQFT_PER_KW = 75
 const KW_PER_PANEL = 0.4
 
 export function calculateSystemSizeDetails(monthlyBill) {
-  const systemSizeKw = Math.round((monthlyBill / MONTHLY_PRODUCTION_PER_KW) * 1.2)
+  const systemSizeKw = estimateSystemSizeKw(monthlyBill)
   return {
     systemSizeKw,
     panelCount: Math.ceil(systemSizeKw / KW_PER_PANEL),

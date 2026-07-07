@@ -86,12 +86,13 @@ function PanelSizeCalculatorPage() {
             <h2 className="text-xl font-bold text-slate-900">How This Sizing Estimate Works</h2>
             <div className="mt-4 space-y-4 text-sm leading-relaxed text-slate-600">
               <p>
-                This calculator assumes roughly 135 kWh of monthly production per installed kW of
-                solar capacity — a reasonable blended average across U.S. climate zones — and
-                sizes the system to about 120% of your current usage to leave headroom for future
-                load growth. Panel count assumes standard 400-watt commercial modules; roof area
-                assumes roughly 75 square feet per kW to account for panel spacing, walkways, and
-                setback requirements.
+                Your monthly bill is first converted to estimated monthly kWh usage using a
+                blended $0.13/kWh national average commercial electricity rate. That usage is then
+                sized against roughly 135 kWh of monthly production per installed kW of solar
+                capacity — a reasonable blended average across U.S. climate zones — at about 120%
+                of usage to leave headroom for future load growth. Panel count assumes standard
+                400-watt commercial modules; roof area assumes roughly 75 square feet per kW to
+                account for panel spacing, walkways, and setback requirements.
               </p>
               <p>
                 Real-world sizing also depends on factors this quick estimate can&apos;t see: your

@@ -32,7 +32,7 @@ const TOPICS = [
   {
     id: 'system-sizing',
     heading: 'How Commercial Solar System Sizing Works',
-    body: "This calculator estimates system size from your monthly electric bill, assuming roughly 135 kWh of monthly production per installed kW and sizing to about 120% of your current load to account for future usage growth. Real-world sizing also depends on available roof or land area, structural and shading constraints, your utility's interconnection capacity limits, and net-metering or export compensation rules — all of which a licensed solar engineer will assess in a formal site survey.",
+    body: "This calculator estimates system size from your monthly electric bill: your bill is converted to estimated monthly kWh usage at a blended $0.13/kWh national average commercial rate, then sized against roughly 135 kWh of monthly production per installed kW at 120% of that usage to account for future usage growth. Real-world sizing also depends on available roof or land area, structural and shading constraints, your utility's interconnection capacity limits, your actual electricity rate, and net-metering or export compensation rules — all of which a licensed solar engineer will assess in a formal site survey.",
   },
   {
     id: 'business-electricity-costs',
