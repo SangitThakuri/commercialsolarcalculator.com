@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import SiteLayout from '../layouts/SiteLayout.jsx'
 import { SliderNumberField } from '../components/InputPanel.jsx'
 import StatTile from '../components/StatTile.jsx'
+import ReportActions from '../components/ReportActions.jsx'
 import EnergyProductionChart from '../components/EnergyProductionChart.jsx'
 import { usePageMeta } from '../hooks/usePageMeta.js'
 import { buildBreadcrumbJsonLd, buildToolJsonLd } from '../utils/seo.js'
@@ -74,6 +75,16 @@ function PanelSizeCalculatorPage() {
               />
             </div>
           </section>
+
+          <ReportActions
+            title="Solar Panel Size Calculator — Summary"
+            lines={[
+              `System Size: ${sizeDetails.systemSizeKw} kW`,
+              `Panel Count: ${sizeDetails.panelCount} panels`,
+              `Roof Area Needed: ${Math.round(sizeDetails.roofAreaSqFt).toLocaleString('en-US')} sq ft`,
+              `Annual Production: ${Math.round(sizeDetails.annualProductionKwh).toLocaleString('en-US')} kWh`,
+            ]}
+          />
 
           <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
             <h2 className="text-lg font-semibold text-slate-900">25-Year Production Estimate</h2>

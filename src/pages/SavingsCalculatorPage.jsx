@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import SiteLayout from '../layouts/SiteLayout.jsx'
 import { SliderNumberField } from '../components/InputPanel.jsx'
 import StatTile from '../components/StatTile.jsx'
+import ReportActions from '../components/ReportActions.jsx'
 import SavingsChart from '../components/SavingsChart.jsx'
 import { usePageMeta } from '../hooks/usePageMeta.js'
 import { buildBreadcrumbJsonLd, buildToolJsonLd } from '../utils/seo.js'
@@ -84,6 +85,15 @@ function SavingsCalculatorPage() {
               />
             </div>
           </section>
+
+          <ReportActions
+            title="Solar Savings Calculator — Summary"
+            lines={[
+              `Year 1 Savings: ${currencyFormatter.format(metrics.annualSavings)}`,
+              `Average Monthly Savings: ${currencyFormatter.format(averageMonthlySavings)}`,
+              `25-Year Total Savings: ${currencyFormatter.format(totalLifetimeSavings)}`,
+            ]}
+          />
 
           <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
             <h2 className="text-lg font-semibold text-slate-900">Annual Savings Over Time</h2>

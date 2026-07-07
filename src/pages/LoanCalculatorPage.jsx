@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import SiteLayout from '../layouts/SiteLayout.jsx'
 import { SliderNumberField } from '../components/InputPanel.jsx'
 import StatTile from '../components/StatTile.jsx'
+import ReportActions from '../components/ReportActions.jsx'
 import AmortizationChart from '../components/AmortizationChart.jsx'
 import { usePageMeta } from '../hooks/usePageMeta.js'
 import { buildBreadcrumbJsonLd, buildToolJsonLd } from '../utils/seo.js'
@@ -112,6 +113,18 @@ function LoanCalculatorPage() {
               <StatTile label="Total Cost of Loan" value={totalPaid} format={(v) => currencyFormatter.format(v)} />
             </div>
           </section>
+
+          <ReportActions
+            title="Solar Loan Calculator — Summary"
+            lines={[
+              `Loan Amount: ${currencyFormatter.format(loanAmount)}`,
+              `APR: ${(apr * 100).toFixed(2)}%`,
+              `Term: ${termYears} yrs`,
+              `Monthly Payment: ${currencyFormatter.format(monthlyPayment)}`,
+              `Total Interest Paid: ${currencyFormatter.format(totalInterest)}`,
+              `Total Cost of Loan: ${currencyFormatter.format(totalPaid)}`,
+            ]}
+          />
 
           <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
             <h2 className="text-lg font-semibold text-slate-900">Amortization Schedule</h2>

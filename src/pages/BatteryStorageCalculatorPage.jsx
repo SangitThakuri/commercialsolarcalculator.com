@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import SiteLayout from '../layouts/SiteLayout.jsx'
 import { SliderNumberField } from '../components/InputPanel.jsx'
 import StatTile from '../components/StatTile.jsx'
+import ReportActions from '../components/ReportActions.jsx'
 import { usePageMeta } from '../hooks/usePageMeta.js'
 import { buildBreadcrumbJsonLd, buildToolJsonLd } from '../utils/seo.js'
 import { calculateBatteryStorage } from '../utils/solarMath.js'
@@ -94,6 +95,16 @@ function BatteryStorageCalculatorPage() {
               />
             </div>
           </section>
+
+          <ReportActions
+            title="Battery Storage Calculator — Summary"
+            lines={[
+              `Critical Load: ${criticalLoadKw} kW`,
+              `Desired Backup Duration: ${backupHours} hrs`,
+              `Usable Battery Capacity: ${Math.round(battery.usableCapacityKwh).toLocaleString('en-US')} kWh`,
+              `Estimated Equipment Cost: ${currencyFormatter.format(battery.estimatedCost)}`,
+            ]}
+          />
 
           <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
             <h2 className="text-xl font-bold text-slate-900">

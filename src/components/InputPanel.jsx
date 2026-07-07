@@ -132,9 +132,11 @@ export function SliderNumberField({
               setDraft(formatValue(clamped !== null ? clamped : value))
             }}
             aria-label={`${ariaLabel}, exact value`}
-            className={`w-24 rounded-lg border border-slate-200 bg-slate-50 py-1.5 text-right text-sm font-bold text-emerald-600 transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 sm:w-28 ${
-              prefix ? 'pl-6' : 'pl-3'
-            } ${suffix ? 'pr-6' : 'pr-3'}`}
+            style={{
+              paddingLeft: prefix ? `${prefix.length + 1.25}ch` : '0.75rem',
+              paddingRight: suffix ? `${suffix.length + 1.25}ch` : '0.75rem',
+            }}
+            className="w-28 rounded-lg border border-slate-200 bg-slate-50 py-1.5 text-right text-sm font-bold text-emerald-600 transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 sm:w-32"
           />
           {suffix && (
             <span className="pointer-events-none absolute inset-y-0 right-2.5 flex items-center text-sm font-semibold text-slate-400">

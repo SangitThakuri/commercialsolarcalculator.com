@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import SiteLayout from '../layouts/SiteLayout.jsx'
 import { SliderNumberField } from '../components/InputPanel.jsx'
 import StatTile from '../components/StatTile.jsx'
+import ReportActions from '../components/ReportActions.jsx'
 import { usePageMeta } from '../hooks/usePageMeta.js'
 import { buildBreadcrumbJsonLd, buildToolJsonLd } from '../utils/seo.js'
 import { calculateElectricityCostProfile } from '../utils/solarMath.js'
@@ -106,6 +107,17 @@ function ElectricityCostCalculatorPage() {
               {currencyFormatter.format(year25.cumulative)} by year 25 — with no solar offset.
             </p>
           </section>
+
+          <ReportActions
+            title="Commercial Electricity Cost Calculator — Summary"
+            lines={[
+              `Effective Rate: ${(profile.effectiveRatePerKwh * 100).toFixed(1)}¢/kWh`,
+              `Annual Cost Today: ${currencyFormatter.format(profile.annualCost)}`,
+              `Projected Annual Cost (Year 25): ${currencyFormatter.format(year25.cost)}`,
+              `Cumulative Cost by Year 10: ${currencyFormatter.format(year10.cumulative)}`,
+              `Cumulative Cost by Year 25: ${currencyFormatter.format(year25.cumulative)}`,
+            ]}
+          />
 
           <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
             <h2 className="text-xl font-bold text-slate-900">

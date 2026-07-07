@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import SiteLayout from '../layouts/SiteLayout.jsx'
 import { SliderNumberField } from '../components/InputPanel.jsx'
 import StatTile from '../components/StatTile.jsx'
+import ReportActions from '../components/ReportActions.jsx'
 import TaxBenefitTimeline from '../components/TaxBenefitTimeline.jsx'
 import { usePageMeta } from '../hooks/usePageMeta.js'
 import { buildBreadcrumbJsonLd, buildToolJsonLd } from '../utils/seo.js'
@@ -105,6 +106,17 @@ function TaxCreditCalculatorPage() {
               <StatTile label="Total Tax Benefit" value={totalBenefit} format={(v) => currencyFormatter.format(v)} highlight />
             </div>
           </section>
+
+          <ReportActions
+            title="Solar Tax Credit Calculator — Summary"
+            lines={[
+              `Gross System Cost: ${currencyFormatter.format(grossCost)}`,
+              `Section 48E ITC (30%): ${currencyFormatter.format(itcAmount)}`,
+              `Depreciable Basis: ${currencyFormatter.format(depreciableBasis)}`,
+              `Total MACRS Shield (6 yrs): ${currencyFormatter.format(totalMacrsShield)}`,
+              `Total Tax Benefit: ${currencyFormatter.format(totalBenefit)}`,
+            ]}
+          />
 
           <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
             <h2 className="text-lg font-semibold text-slate-900">When You Realize Each Benefit</h2>

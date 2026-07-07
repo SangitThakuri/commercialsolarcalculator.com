@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import SiteLayout from '../layouts/SiteLayout.jsx'
 import { SliderNumberField } from '../components/InputPanel.jsx'
 import StatTile from '../components/StatTile.jsx'
+import ReportActions from '../components/ReportActions.jsx'
 import CashFlowChart from '../components/CashFlowChart.jsx'
 import { usePageMeta } from '../hooks/usePageMeta.js'
 import { buildBreadcrumbJsonLd, buildToolJsonLd } from '../utils/seo.js'
@@ -128,6 +129,18 @@ function RoiCalculatorPage() {
               />
             </div>
           </section>
+
+          <ReportActions
+            title="Commercial Solar ROI Calculator — Summary"
+            lines={[
+              `25-Year ROI: ${roiPercent.toFixed(0)}%`,
+              `Annualized Return: ${annualizedReturnPercent.toFixed(1)}%/yr`,
+              `Net Capital Required: ${currencyFormatter.format(metrics.netCapital)}`,
+              `Total 25-Year Savings: ${currencyFormatter.format(totalNetPosition + metrics.netCapital)}`,
+              `Net Profit After Capital Recovered: ${currencyFormatter.format(totalNetPosition)}`,
+              `Payback Period: ${metrics.paybackPeriod.toFixed(1)} yrs`,
+            ]}
+          />
 
           <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
             <h2 className="text-lg font-semibold text-slate-900">Cumulative ROI Over 25 Years</h2>

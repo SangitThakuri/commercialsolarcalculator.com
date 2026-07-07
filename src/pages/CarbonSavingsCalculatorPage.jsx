@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import SiteLayout from '../layouts/SiteLayout.jsx'
 import { SliderNumberField } from '../components/InputPanel.jsx'
 import StatTile from '../components/StatTile.jsx'
+import ReportActions from '../components/ReportActions.jsx'
 import { usePageMeta } from '../hooks/usePageMeta.js'
 import { buildBreadcrumbJsonLd, buildToolJsonLd } from '../utils/seo.js'
 import { calculateSystemSizeDetails, calculateCarbonSavings } from '../utils/solarMath.js'
@@ -85,6 +86,16 @@ function CarbonSavingsCalculatorPage() {
               />
             </div>
           </section>
+
+          <ReportActions
+            title="Carbon Savings Calculator — Summary"
+            lines={[
+              `Annual CO2 Avoided: ${carbon.annualTonsCo2.toFixed(1)} tons`,
+              `25-Year CO2 Avoided: ${Math.round(carbon.lifetimeTonsCo2).toLocaleString('en-US')} tons`,
+              `Equivalent Cars Off the Road: ${carbon.equivalentCarsPerYear.toFixed(1)}/yr`,
+              `Equivalent Tree Seedlings Grown 10yrs: ${Math.round(carbon.equivalentTreeSeedlingsGrown10Yr).toLocaleString('en-US')}`,
+            ]}
+          />
 
           <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
             <h2 className="text-xl font-bold text-slate-900">Methodology &amp; ESG Reporting</h2>

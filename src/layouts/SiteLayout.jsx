@@ -13,11 +13,10 @@ function SiteLayout({
 }) {
   return (
     <div className="flex min-h-screen flex-col bg-slate-900">
-      <header className="relative overflow-hidden border-b border-slate-800 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 px-4 py-6 sm:px-8">
-        <div
-          className="pointer-events-none absolute -top-24 right-0 h-72 w-72 rounded-full bg-emerald-500/10 blur-3xl"
-          aria-hidden="true"
-        />
+      <header className="relative border-b border-slate-800 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 px-4 py-6 sm:px-8">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+          <div className="absolute -top-24 right-0 h-72 w-72 rounded-full bg-emerald-500/10 blur-3xl" />
+        </div>
         <div className="relative mx-auto max-w-6xl">
           <div className="flex items-center justify-between gap-4">
             <Link to="/" className="flex items-center gap-2 text-sm font-semibold text-white">

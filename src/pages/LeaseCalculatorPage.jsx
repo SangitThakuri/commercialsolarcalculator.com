@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import SiteLayout from '../layouts/SiteLayout.jsx'
 import { SliderNumberField } from '../components/InputPanel.jsx'
 import StatTile from '../components/StatTile.jsx'
+import ReportActions from '../components/ReportActions.jsx'
 import { usePageMeta } from '../hooks/usePageMeta.js'
 import { buildBreadcrumbJsonLd, buildToolJsonLd } from '../utils/seo.js'
 import { calculateSolarMetrics, calculateLeaseComparison } from '../utils/solarMath.js'
@@ -126,6 +127,16 @@ function LeaseCalculatorPage() {
               </div>
             </div>
           </section>
+
+          <ReportActions
+            title="Solar Lease Calculator — Summary"
+            lines={[
+              `Lease/PPA Monthly Payment: ${currencyFormatter.format(lease.monthlyLeasePayment)}`,
+              `Lease/PPA Monthly Savings vs. Utility: ${currencyFormatter.format(lease.monthlyLeaseSavings)}`,
+              `Ownership Net Capital Required: ${currencyFormatter.format(metrics.netCapital)}`,
+              `Ownership Annual Utility Savings: ${currencyFormatter.format(metrics.annualSavings)}`,
+            ]}
+          />
 
           <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
             <h2 className="text-xl font-bold text-slate-900">How Solar Leases and PPAs Work</h2>

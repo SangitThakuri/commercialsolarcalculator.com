@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import SiteLayout from '../layouts/SiteLayout.jsx'
 import { SliderNumberField } from '../components/InputPanel.jsx'
 import StatTile from '../components/StatTile.jsx'
+import ReportActions from '../components/ReportActions.jsx'
 import { usePageMeta } from '../hooks/usePageMeta.js'
 import { buildBreadcrumbJsonLd, buildToolJsonLd } from '../utils/seo.js'
 import { calculateSolarMetrics, calculateDiscountedPayback } from '../utils/solarMath.js'
@@ -110,6 +111,15 @@ function PaybackCalculatorPage() {
               />
             </div>
           </section>
+
+          <ReportActions
+            title="Solar Payback Calculator — Summary"
+            lines={[
+              `Simple Payback Period: ${metrics.paybackPeriod.toFixed(1)} yrs`,
+              `Discounted Payback Period: ${discountedPayback !== null ? `${discountedPayback.toFixed(1)} yrs` : 'Beyond 25 yrs'}`,
+              `Discount Rate Used: ${(discountRate * 100).toFixed(1)}%`,
+            ]}
+          />
 
           <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
             <h2 className="text-xl font-bold text-slate-900">

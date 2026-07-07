@@ -20,6 +20,12 @@ import {
   generateMacrsTimeline,
 } from '../utils/solarMath.js'
 
+const currencyFormatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  maximumFractionDigits: 0,
+})
+
 const HOME_JSON_LD = [
   {
     '@context': 'https://schema.org',
@@ -124,6 +130,15 @@ function HomePage() {
     [metrics.depreciableBasis, stateTaxRate],
   )
 
+  const reportLines = [
+    `System Size: ${metrics.systemSizeKw} kW`,
+    `Gross System Cost: ${currencyFormatter.format(metrics.grossCost)}`,
+    `Federal ITC (30%): ${currencyFormatter.format(metrics.itcAmount)}`,
+    `MACRS Tax Shield: ${currencyFormatter.format(metrics.macrsSavings)}`,
+    `Net Capital Required: ${currencyFormatter.format(metrics.netCapital)}`,
+    `Estimated Payback Period: ${Number.isFinite(metrics.paybackPeriod) ? `${metrics.paybackPeriod.toFixed(1)} years` : 'N/A'}`,
+  ]
+
   return (
     <SiteLayout
       title="Commercial Solar Calculator"
@@ -142,7 +157,7 @@ function HomePage() {
         <div className="flex flex-col gap-6 lg:col-span-8">
           <ResultsSummary metrics={metrics} />
 
-          <ReportActions metrics={metrics} />
+          <ReportActions title="Commercial Solar Calculator — ROI Summary" lines={reportLines} />
 
           <section
             className="animate-fade-in-up rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8 print:shadow-none print:ring-0"
