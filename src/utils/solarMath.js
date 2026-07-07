@@ -102,3 +102,114 @@ export function generateCashFlowProjection(netCapital, annualSavings) {
 
   return { projection, crossoverYear }
 }
+
+const SQFT_PER_KW = 75
+const KW_PER_PANEL = 0.4
+
+export function calculateSystemSizeDetails(monthlyBill) {
+  const systemSizeKw = Math.round((monthlyBill / MONTHLY_PRODUCTION_PER_KW) * 1.2)
+  return {
+    systemSizeKw,
+    panelCount: Math.ceil(systemSizeKw / KW_PER_PANEL),
+    roofAreaSqFt: Math.round(systemSizeKw * SQFT_PER_KW),
+    annualProductionKwh: systemSizeKw * MONTHLY_PRODUCTION_PER_KW * 12,
+  }
+}
+
+const BATTERY_COST_PER_KWH = 500
+
+export function calculateBatteryStorage(criticalLoadKw, backupHours) {
+  const usableCapacityKwh = criticalLoadKw * backupHours
+  return {
+    usableCapacityKwh,
+    estimatedCost: usableCapacityKwh * BATTERY_COST_PER_KWH,
+  }
+}
+
+const LEASE_RATE_DISCOUNT = 0.15
+
+export function calculateLeaseComparison(monthlyBill, netCapital, annualSavings) {
+  const monthlyUtilityCost = monthlyBill
+  const monthlyLeasePayment = monthlyUtilityCost * (1 - LEASE_RATE_DISCOUNT)
+  const monthlyLeaseSavings = monthlyUtilityCost - monthlyLeasePayment
+
+  return {
+    monthlyLeasePayment,
+    monthlyLeaseSavings,
+    annualLeaseSavings: monthlyLeaseSavings * 12,
+    ownershipNetCapital: netCapital,
+    ownershipAnnualSavings: annualSavings,
+  }
+}
+
+export function calculateElectricityCostProfile(monthlyBill, monthlyKwh) {
+  const effectiveRatePerKwh = monthlyKwh > 0 ? monthlyBill / monthlyKwh : 0
+  const annualCost = monthlyBill * 12
+
+  const projection = []
+  let cumulative = 0
+  for (let year = 1; year <= PROJECTION_YEARS; year += 1) {
+    const yearCost = annualCost * Math.pow(1 + ENERGY_INFLATION_RATE, year - 1)
+    cumulative += yearCost
+    projection.push({ year, cost: yearCost, cumulative })
+  }
+
+  return { effectiveRatePerKwh, annualCost, projection }
+}
+
+// EPA eGRID national average grid emissions factor (lbs CO2 per kWh).
+const GRID_EMISSIONS_LBS_PER_KWH = 0.855
+const LBS_PER_METRIC_TON = 2204.62
+// EPA Greenhouse Gas Equivalencies Calculator conversion factors.
+const TONS_CO2_PER_CAR_PER_YEAR = 4.6
+const TONS_CO2_PER_TREE_SEEDLING_10YR = 0.0605
+
+export function calculateDiscountedPayback(netCapital, annualSavings, discountRate) {
+  let cumulative = -netCapital
+  let previousCumulative = cumulative
+
+  for (let year = 1; year <= PROJECTION_YEARS; year += 1) {
+    const nominalSavings = annualSavings * Math.pow(1 + ENERGY_INFLATION_RATE, year - 1)
+    const discountedSavings = nominalSavings / Math.pow(1 + discountRate, year)
+    previousCumulative = cumulative
+    cumulative += discountedSavings
+
+    if (cumulative >= 0) {
+      const fraction = -previousCumulative / (cumulative - previousCumulative)
+      return year - 1 + fraction
+    }
+  }
+
+  return null
+}
+
+export function generateAmortizationSchedule(loanAmount, annualPercentageRate, termYears) {
+  const { monthlyPayment } = calculateLoanComparison(loanAmount, annualPercentageRate, termYears, 0)
+  const monthlyRate = annualPercentageRate / 12
+
+  let balance = loanAmount
+  const schedule = [{ year: 0, balance }]
+
+  for (let month = 1; month <= termYears * 12; month += 1) {
+    const interest = balance * monthlyRate
+    balance = Math.max(balance + interest - monthlyPayment, 0)
+
+    if (month % 12 === 0) {
+      schedule.push({ year: month / 12, balance })
+    }
+  }
+
+  return { monthlyPayment, schedule }
+}
+
+export function calculateCarbonSavings(annualKwh) {
+  const annualTonsCo2 = (annualKwh * GRID_EMISSIONS_LBS_PER_KWH) / LBS_PER_METRIC_TON
+  const lifetimeTonsCo2 = annualTonsCo2 * PROJECTION_YEARS
+
+  return {
+    annualTonsCo2,
+    lifetimeTonsCo2,
+    equivalentCarsPerYear: annualTonsCo2 / TONS_CO2_PER_CAR_PER_YEAR,
+    equivalentTreeSeedlingsGrown10Yr: annualTonsCo2 / TONS_CO2_PER_TREE_SEEDLING_10YR,
+  }
+}

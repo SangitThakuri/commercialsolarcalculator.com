@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import Modal from './Modal.jsx'
+import { CALCULATOR_PAGES } from '../data/calculatorPages.js'
 
 const FOOTER_LINKS = [
   { id: 'methodology', label: 'Calculation Methodology' },
@@ -124,6 +126,21 @@ function Footer() {
     <footer className="mt-12 border-t border-slate-800 bg-slate-900 py-8 text-slate-400">
       <div className="mx-auto max-w-5xl px-4">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-300">
+          Free Commercial Solar Calculators
+        </h2>
+        <nav aria-label="All calculators" className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2 sm:grid-cols-3">
+          {CALCULATOR_PAGES.map((page) => (
+            <Link
+              key={page.path}
+              to={page.path}
+              className="text-xs text-slate-400 transition hover:text-emerald-400"
+            >
+              {page.label}
+            </Link>
+          ))}
+        </nav>
+
+        <h2 className="mt-8 border-t border-slate-800 pt-6 text-sm font-semibold uppercase tracking-wide text-slate-300">
           Legal &amp; Tax Disclaimer
         </h2>
         <p className="mt-3 text-xs leading-relaxed">
