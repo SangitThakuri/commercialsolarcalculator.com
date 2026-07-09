@@ -2,19 +2,27 @@ import { useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { X } from 'lucide-react'
 import { CALCULATOR_PAGES, CATEGORIES } from '../data/calculatorPages.js'
+import { useIsDesktop } from '../hooks/useIsDesktop.js'
 
 function SidebarNav({ isOpen, onClose }) {
   const location = useLocation()
   const panelRef = useRef(null)
+  const isDesktop = useIsDesktop()
 
-  // Auto-close whenever the route changes (e.g. after clicking a nav link).
+  // On desktop the sidebar is a permanent column (always visible via CSS), so it should
+  // never be hidden from assistive tech regardless of the mobile-only `isOpen` state.
+  const isVisible = isOpen || isDesktop
+
+  // Auto-close the mobile overlay whenever the route changes (e.g. after clicking a link).
   useEffect(() => {
     onClose()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname])
 
+  // Escape-to-close, body-scroll lock, and focus-on-open only apply to the mobile overlay —
+  // the desktop column is always open and must never lock page scroll or steal focus.
   useEffect(() => {
-    if (!isOpen) return undefined
+    if (!isOpen || isDesktop) return undefined
 
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') onClose()
@@ -29,7 +37,7 @@ function SidebarNav({ isOpen, onClose }) {
       document.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = previousOverflow
     }
-  }, [isOpen, onClose])
+  }, [isOpen, isDesktop, onClose])
 
   const featured = CALCULATOR_PAGES.find((page) => page.featured)
   const groups = Object.values(CATEGORIES).map((category) => ({
@@ -40,7 +48,7 @@ function SidebarNav({ isOpen, onClose }) {
   return (
     <>
       <div
-        className={`fixed inset-0 z-40 bg-slate-950/70 backdrop-blur-sm transition-opacity duration-300 ${
+        className={`fixed inset-0 z-40 bg-slate-950/70 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
           isOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
         }`}
         aria-hidden="true"
@@ -49,13 +57,13 @@ function SidebarNav({ isOpen, onClose }) {
 
       <div
         ref={panelRef}
-        role="dialog"
-        aria-modal="true"
-        aria-label="All calculators navigation"
-        aria-hidden={!isOpen}
+        role={isDesktop ? undefined : 'dialog'}
+        aria-modal={isDesktop ? undefined : true}
+        aria-label={isDesktop ? undefined : 'All calculators navigation'}
+        aria-hidden={!isVisible}
         tabIndex={-1}
-        className={`fixed inset-y-0 left-0 z-50 flex w-[85vw] max-w-xs flex-col bg-slate-900 shadow-2xl transition-transform duration-300 ease-out focus:outline-none ${
-          isOpen ? 'translate-x-0' : '-translate-x-full pointer-events-none'
+        className={`fixed inset-y-0 left-0 z-50 flex w-[85vw] max-w-xs flex-col bg-slate-900 shadow-2xl transition-transform duration-300 ease-out focus:outline-none lg:sticky lg:top-0 lg:z-0 lg:h-screen lg:w-72 lg:max-w-none lg:flex-shrink-0 lg:translate-x-0 lg:border-r lg:border-slate-800 lg:shadow-none ${
+          isOpen ? 'translate-x-0' : '-translate-x-full pointer-events-none lg:pointer-events-auto'
         }`}
       >
         <div className="flex items-center justify-between border-b border-slate-800 px-5 py-4">
@@ -71,13 +79,16 @@ function SidebarNav({ isOpen, onClose }) {
             type="button"
             onClick={onClose}
             aria-label="Close navigation menu"
-            className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg text-slate-400 transition hover:bg-slate-800 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40"
+            className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg text-slate-400 transition hover:bg-slate-800 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40 lg:hidden"
           >
             <X className="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
 
-        <nav className="flex-1 overflow-y-auto overscroll-contain px-3 py-4">
+        <nav
+          aria-label="Calculator navigation"
+          className="flex-1 overflow-y-auto overscroll-contain px-3 py-4"
+        >
           {featured && (
             <Link
               to={featured.path}
