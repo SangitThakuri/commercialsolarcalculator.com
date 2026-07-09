@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Menu } from 'lucide-react'
 import TrustBar from '../components/TrustBar.jsx'
 import Footer from '../components/Footer.jsx'
-import CalculatorsMenu from '../components/CalculatorsMenu.jsx'
+import SidebarNav from '../components/SidebarNav.jsx'
 import Breadcrumbs from '../components/Breadcrumbs.jsx'
 
 function SiteLayout({
@@ -11,6 +13,8 @@ function SiteLayout({
   breadcrumbLabel,
   children,
 }) {
+  const [isNavOpen, setIsNavOpen] = useState(false)
+
   return (
     <div className="flex min-h-screen flex-col bg-slate-900">
       <header className="relative border-b border-slate-800 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 px-4 py-6 sm:px-8">
@@ -23,7 +27,15 @@ function SiteLayout({
               <span aria-hidden="true">☀️</span>
               Commercial Solar Calculator
             </Link>
-            <CalculatorsMenu />
+            <button
+              type="button"
+              onClick={() => setIsNavOpen(true)}
+              aria-label="Open all calculators menu"
+              className="flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800/60 px-3 py-1.5 text-xs font-semibold text-slate-200 transition hover:border-emerald-500 hover:text-emerald-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40"
+            >
+              <Menu className="h-4 w-4" aria-hidden="true" />
+              All Calculators
+            </button>
           </div>
 
           <p className="mt-5 text-xs font-semibold uppercase tracking-widest text-emerald-500">
@@ -41,6 +53,8 @@ function SiteLayout({
       <main className="flex-1 px-4 py-8 sm:px-8">{children}</main>
 
       <Footer />
+
+      <SidebarNav isOpen={isNavOpen} onClose={() => setIsNavOpen(false)} />
     </div>
   )
 }

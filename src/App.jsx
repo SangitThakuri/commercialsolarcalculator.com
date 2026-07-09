@@ -11,6 +11,8 @@ import ElectricityCostCalculatorPage from './pages/ElectricityCostCalculatorPage
 import TaxCreditCalculatorPage from './pages/TaxCreditCalculatorPage.jsx'
 import SavingsCalculatorPage from './pages/SavingsCalculatorPage.jsx'
 import CarbonSavingsCalculatorPage from './pages/CarbonSavingsCalculatorPage.jsx'
+import CostCalculatorPage from './pages/CostCalculatorPage.jsx'
+import NpvIrrCalculatorPage from './pages/NpvIrrCalculatorPage.jsx'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -41,6 +43,8 @@ function App() {
         <Route path="/solar-tax-credit-calculator" element={<TaxCreditCalculatorPage />} />
         <Route path="/solar-savings-calculator" element={<SavingsCalculatorPage />} />
         <Route path="/carbon-savings-calculator" element={<CarbonSavingsCalculatorPage />} />
+        <Route path="/commercial-solar-cost-calculator" element={<CostCalculatorPage />} />
+        <Route path="/solar-investment-calculator" element={<NpvIrrCalculatorPage />} />
       </Routes>
     </>
   )

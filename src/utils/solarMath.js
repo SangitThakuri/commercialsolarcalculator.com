@@ -221,3 +221,78 @@ export function calculateCarbonSavings(annualKwh) {
     equivalentTreeSeedlingsGrown10Yr: annualTonsCo2 / TONS_CO2_PER_TREE_SEEDLING_10YR,
   }
 }
+
+// Blended national-average commercial installed-cost breakdown by component.
+const COST_COMPONENTS = [
+  { label: 'Solar Modules (Panels)', percent: 0.3 },
+  { label: 'Inverters', percent: 0.1 },
+  { label: 'Racking & Mounting', percent: 0.1 },
+  { label: 'Electrical & Balance of System', percent: 0.15 },
+  { label: 'Labor & Installation', percent: 0.2 },
+  { label: 'Permitting & Interconnection', percent: 0.08 },
+  { label: 'Design, Engineering & Overhead', percent: 0.07 },
+]
+
+export function calculateCostBreakdown(monthlyBill) {
+  const { systemSizeKw } = calculateSystemSizeDetails(monthlyBill)
+  const grossCost = systemSizeKw * SYSTEM_COST_PER_KW
+  const costPerWatt = SYSTEM_COST_PER_KW / 1000
+
+  const breakdown = COST_COMPONENTS.map((component) => ({
+    ...component,
+    cost: grossCost * component.percent,
+  }))
+
+  return { systemSizeKw, grossCost, costPerWatt, breakdown }
+}
+
+function buildAnnualCashFlows(netCapital, annualSavings, years = PROJECTION_YEARS) {
+  const flows = [-netCapital]
+  for (let year = 1; year <= years; year += 1) {
+    flows.push(annualSavings * Math.pow(1 + ENERGY_INFLATION_RATE, year - 1))
+  }
+  return flows
+}
+
+function npvAtRate(cashFlows, rate) {
+  return cashFlows.reduce((sum, flow, index) => sum + flow / Math.pow(1 + rate, index), 0)
+}
+
+export function calculateNpvAndIrr(netCapital, annualSavings, discountRate, years = PROJECTION_YEARS) {
+  const cashFlows = buildAnnualCashFlows(netCapital, annualSavings, years)
+  const npv = npvAtRate(cashFlows, discountRate)
+
+  // Bisection search for the rate where NPV crosses zero. This cash flow shape (one
+  // negative outflow followed by all-positive inflows) has NPV monotonically decreasing
+  // in the discount rate, so a single sign check per step is sufficient to converge.
+  let low = -0.99
+  let high = 5
+  let irr = null
+
+  for (let i = 0; i < 100; i += 1) {
+    const mid = (low + high) / 2
+    const npvMid = npvAtRate(cashFlows, mid)
+    irr = mid
+
+    if (Math.abs(npvMid) < 0.5) break
+    if (npvMid > 0) {
+      low = mid
+    } else {
+      high = mid
+    }
+  }
+
+  const discountedProjection = []
+  let cumulative = -netCapital
+  let discountedCrossoverYear = null
+
+  for (let year = 1; year <= years; year += 1) {
+    cumulative += cashFlows[year] / Math.pow(1 + discountRate, year)
+    if (discountedCrossoverYear === null && cumulative >= 0) {
+      discountedCrossoverYear = year
+    }
+    discountedProjection.push({ year, cumulative })
+  }
+
+  return { npv, irr, cashFlows, discountedProjection, discountedCrossoverYear }
+}
