@@ -1,16 +1,13 @@
-import { useEffect, useRef, useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Search, X } from 'lucide-react'
+import { useEffect, useRef } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { X } from 'lucide-react'
 import { CALCULATOR_PAGES, CATEGORIES } from '../data/calculatorPages.js'
 import { useIsDesktop } from '../hooks/useIsDesktop.js'
-import { resolveSearchQuery } from '../utils/resolveSearchQuery.js'
 
 function SidebarNav({ isOpen, onClose }) {
   const location = useLocation()
-  const navigate = useNavigate()
   const panelRef = useRef(null)
   const isDesktop = useIsDesktop()
-  const [searchTerm, setSearchTerm] = useState('')
 
   // On desktop the sidebar is a permanent column (always visible via CSS), so it should
   // never be hidden from assistive tech regardless of the mobile-only `isOpen` state.
@@ -47,43 +44,6 @@ function SidebarNav({ isOpen, onClose }) {
     category,
     items: CALCULATOR_PAGES.filter((page) => page.category === category),
   }))
-
-  // Live filter: as the visitor types, only show calculators whose label or subtitle
-  // contains the typed text — this is separate from (and complements) the keyword
-  // resolver below, which additionally understands known synonym phrases that don't
-  // literally appear in any page title (e.g. "pv panel calculator").
-  const normalizedSearch = searchTerm.trim().toLowerCase()
-  const matchesSearch = (page) =>
-    !normalizedSearch ||
-    page.label.toLowerCase().includes(normalizedSearch) ||
-    page.subtitle.toLowerCase().includes(normalizedSearch)
-
-  const visibleFeatured = featured && matchesSearch(featured) ? featured : null
-  const visibleGroups = groups
-    .map((group) => ({ ...group, items: group.items.filter(matchesSearch) }))
-    .filter((group) => group.items.length > 0)
-  const hasNoResults = Boolean(normalizedSearch) && !visibleFeatured && visibleGroups.length === 0
-
-  // Enter jumps straight to the best match: prefer the keyword-synonym resolver (handles
-  // phrases like "solar array calculator" that aren't literal page titles), then fall back
-  // to whatever the live filter already narrowed down to.
-  const goToBestMatch = () => {
-    const resolvedRoute =
-      resolveSearchQuery(searchTerm) ?? visibleFeatured?.path ?? visibleGroups[0]?.items[0]?.path
-
-    if (resolvedRoute) {
-      navigate(resolvedRoute)
-      setSearchTerm('')
-      onClose()
-    }
-  }
-
-  const handleSearchKeyDown = (event) => {
-    if (event.key === 'Enter') {
-      event.preventDefault()
-      goToBestMatch()
-    }
-  }
 
   return (
     <>
@@ -125,54 +85,32 @@ function SidebarNav({ isOpen, onClose }) {
           </button>
         </div>
 
-        <div className="border-b border-slate-800 px-3 py-3">
-          <div className="relative">
-            <Search
-              className="pointer-events-none absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500"
-              aria-hidden="true"
-            />
-            <input
-              type="search"
-              value={searchTerm}
-              onChange={(event) => setSearchTerm(event.target.value)}
-              onKeyDown={handleSearchKeyDown}
-              placeholder="Search calculators..."
-              aria-label="Search calculators"
-              className="w-full rounded-lg border border-slate-800 bg-slate-800/60 py-2 pl-8 pr-3 text-sm text-white placeholder:text-slate-500 transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
-            />
-          </div>
-        </div>
-
         <nav
           aria-label="Calculator navigation"
           className="flex-1 overflow-y-auto overscroll-contain px-3 py-4"
         >
-          {visibleFeatured && (
+          {featured && (
             <Link
-              to={visibleFeatured.path}
+              to={featured.path}
               onClick={onClose}
               className={`mb-5 flex items-start gap-3 rounded-xl border p-3 transition ${
-                location.pathname === visibleFeatured.path
+                location.pathname === featured.path
                   ? 'border-emerald-500/40 bg-emerald-500/10'
                   : 'border-slate-800 bg-slate-800/50 hover:border-slate-700 hover:bg-slate-800'
               }`}
             >
-              <visibleFeatured.icon
+              <featured.icon
                 className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-400"
                 aria-hidden="true"
               />
               <span>
-                <span className="block text-sm font-semibold text-white">
-                  {visibleFeatured.label}
-                </span>
-                <span className="mt-0.5 block text-xs text-slate-500">
-                  {visibleFeatured.subtitle}
-                </span>
+                <span className="block text-sm font-semibold text-white">{featured.label}</span>
+                <span className="mt-0.5 block text-xs text-slate-500">{featured.subtitle}</span>
               </span>
             </Link>
           )}
 
-          {visibleGroups.map(({ category, items }) => (
+          {groups.map(({ category, items }) => (
             <div key={category} className="mb-5">
               <p className="mb-1.5 px-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
                 {category}
@@ -213,12 +151,6 @@ function SidebarNav({ isOpen, onClose }) {
               </div>
             </div>
           ))}
-
-          {hasNoResults && (
-            <p className="px-2 text-sm text-slate-500">
-              No calculators match &quot;{searchTerm}&quot;. Press Enter to search anyway.
-            </p>
-          )}
         </nav>
       </div>
     </>
