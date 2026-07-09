@@ -5,6 +5,7 @@ import TrustBar from '../components/TrustBar.jsx'
 import Footer from '../components/Footer.jsx'
 import SidebarNav from '../components/SidebarNav.jsx'
 import Breadcrumbs from '../components/Breadcrumbs.jsx'
+import { useDynamicHero } from '../hooks/useDynamicHero.js'
 
 function SiteLayout({
   eyebrow = 'For Businesses & Commercial Property Owners',
@@ -14,6 +15,10 @@ function SiteLayout({
   children,
 }) {
   const [isNavOpen, setIsNavOpen] = useState(false)
+
+  // If this page was reached via ?ref=/?q= with a search term whose canonical
+  // destination is this exact route, swap in a headline matching that term.
+  const hero = useDynamicHero({ defaultTitle: title, defaultIntro: description })
 
   return (
     <div className="lg:flex">
@@ -44,8 +49,8 @@ function SiteLayout({
             <p className="mt-5 text-xs font-semibold uppercase tracking-widest text-emerald-500 lg:mt-0">
               {eyebrow}
             </p>
-            <h1 className="mt-1 text-2xl font-bold text-white sm:text-3xl">{title}</h1>
-            <p className="mt-2 max-w-2xl text-sm text-slate-400">{description}</p>
+            <h1 className="mt-1 text-2xl font-bold text-white sm:text-3xl">{hero.title}</h1>
+            <p className="mt-2 max-w-2xl text-sm text-slate-400">{hero.intro}</p>
           </div>
         </header>
 
