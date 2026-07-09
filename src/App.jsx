@@ -13,6 +13,9 @@ import SavingsCalculatorPage from './pages/SavingsCalculatorPage.jsx'
 import CarbonSavingsCalculatorPage from './pages/CarbonSavingsCalculatorPage.jsx'
 import CostCalculatorPage from './pages/CostCalculatorPage.jsx'
 import NpvIrrCalculatorPage from './pages/NpvIrrCalculatorPage.jsx'
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage.jsx'
+import CookiePolicyPage from './pages/CookiePolicyPage.jsx'
+import CookieConsentBanner from './components/CookieConsentBanner.jsx'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -45,7 +48,10 @@ function App() {
         <Route path="/carbon-savings-calculator" element={<CarbonSavingsCalculatorPage />} />
         <Route path="/commercial-solar-cost-calculator" element={<CostCalculatorPage />} />
         <Route path="/solar-investment-calculator" element={<NpvIrrCalculatorPage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="/cookie-policy" element={<CookiePolicyPage />} />
       </Routes>
+      <CookieConsentBanner />
     </>
   )
 }

@@ -3,10 +3,16 @@ import { Link } from 'react-router-dom'
 import Modal from './Modal.jsx'
 import { CALCULATOR_PAGES } from '../data/calculatorPages.js'
 
-const FOOTER_LINKS = [
+// Rendered as buttons that open an in-page modal.
+const MODAL_FOOTER_LINKS = [
   { id: 'methodology', label: 'Calculation Methodology' },
-  { id: 'privacy', label: 'Privacy Policy' },
   { id: 'terms', label: 'Terms of Service' },
+]
+
+// Rendered as real links to their own standalone, indexable pages.
+const PAGE_FOOTER_LINKS = [
+  { path: '/privacy-policy', label: 'Privacy Policy' },
+  { path: '/cookie-policy', label: 'Cookie Policy' },
 ]
 
 function MethodologyContent() {
@@ -57,28 +63,6 @@ function MethodologyContent() {
   )
 }
 
-function PrivacyContent() {
-  return (
-    <>
-      <p>
-        This calculator runs entirely in your browser. The inputs you enter — electric bill,
-        state tax rate, and property location — are used only to compute the figures shown on
-        this page and are not transmitted to or stored on any server.
-      </p>
-      <p>
-        We and third-party vendors, including Google, may use cookies to serve ads based on your
-        prior visits to this website or other websites, and to measure ad performance.
-        Advertising cookies enable us and our partners to serve ads based on your visit to this
-        site and other sites on the internet. These advertising and analytics cookies do not
-        access the calculator inputs described above. You can opt out of personalized advertising
-        by visiting Google's Ads Settings, and you can view, block, or delete any cookie at any
-        time through your browser settings.
-      </p>
-      <p>We do not sell personal data to third parties.</p>
-    </>
-  )
-}
-
 function TermsContent() {
   return (
     <>
@@ -116,7 +100,6 @@ function TermsContent() {
 
 const MODAL_CONTENT = {
   methodology: { title: 'Calculation Methodology', body: <MethodologyContent /> },
-  privacy: { title: 'Privacy Policy', body: <PrivacyContent /> },
   terms: { title: 'Terms of Service', body: <TermsContent /> },
 }
 
@@ -162,7 +145,7 @@ function Footer() {
           aria-label="Site information"
           className="mt-6 flex flex-wrap gap-x-6 gap-y-2 border-t border-slate-800 pt-6 text-xs"
         >
-          {FOOTER_LINKS.map((link) => (
+          {MODAL_FOOTER_LINKS.map((link) => (
             <button
               key={link.id}
               type="button"
@@ -172,6 +155,15 @@ function Footer() {
               {link.label}
             </button>
           ))}
+          {PAGE_FOOTER_LINKS.map((link) => (
+            <Link
+              key={link.path}
+              to={link.path}
+              className="font-medium text-slate-300 underline decoration-slate-600 underline-offset-4 transition hover:text-emerald-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40"
+            >
+              {link.label}
+            </Link>
+          ))}
         </nav>
 
         <p className="mt-4 text-xs text-slate-500">
@@ -179,7 +171,7 @@ function Footer() {
         </p>
       </div>
 
-      {FOOTER_LINKS.map((link) => (
+      {MODAL_FOOTER_LINKS.map((link) => (
         <Modal
           key={link.id}
           title={MODAL_CONTENT[link.id].title}
