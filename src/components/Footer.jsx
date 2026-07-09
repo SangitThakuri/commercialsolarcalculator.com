@@ -13,6 +13,7 @@ const MODAL_FOOTER_LINKS = [
 const PAGE_FOOTER_LINKS = [
   { path: '/privacy-policy', label: 'Privacy Policy' },
   { path: '/cookie-policy', label: 'Cookie Policy' },
+  { path: '/contact', label: 'Contact Us' },
 ]
 
 function MethodologyContent() {

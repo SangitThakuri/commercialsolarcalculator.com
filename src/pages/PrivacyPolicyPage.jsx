@@ -39,12 +39,11 @@ function PrivacyPolicyPage() {
               <h2 className="text-lg font-bold text-slate-900">1. Who We Are</h2>
               <p className="mt-2">
                 Commercial Solar Calculator operates commercialsolarcalculator.com. For any
-                privacy question or request described in this policy, contact us at{' '}
-                <strong>privacy@commercialsolarcalculator.com</strong>.{' '}
-                <em>
-                  (Placeholder — set up and monitor this inbox, or replace it with your preferred
-                  contact channel, before publishing this policy.)
-                </em>
+                privacy question or request described in this policy, reach us via our{' '}
+                <Link to="/contact" className="font-semibold text-emerald-600 hover:underline">
+                  Contact Form
+                </Link>
+                .
               </p>
             </div>
 
@@ -169,9 +168,11 @@ function PrivacyPolicyPage() {
                 <li>The right to be free from discrimination for exercising any of these rights.</li>
               </ul>
               <p className="mt-3">
-                To exercise any of these rights, contact us at{' '}
-                <strong>privacy@commercialsolarcalculator.com</strong>. We will respond within the
-                timeframe required by applicable law.
+                To exercise any of these rights, reach us via our{' '}
+                <Link to="/contact" className="font-semibold text-emerald-600 hover:underline">
+                  Contact Form
+                </Link>
+                . We will respond within the timeframe required by applicable law.
               </p>
             </div>
 
@@ -206,8 +207,11 @@ function PrivacyPolicyPage() {
             <div>
               <h2 className="text-lg font-bold text-slate-900">10. Contact Us</h2>
               <p className="mt-2">
-                Questions about this Privacy Policy or your data can be sent to{' '}
-                <strong>privacy@commercialsolarcalculator.com</strong>.
+                Questions about this Privacy Policy or your data can be sent via our{' '}
+                <Link to="/contact" className="font-semibold text-emerald-600 hover:underline">
+                  Contact Form
+                </Link>
+                .
               </p>
             </div>
           </div>

@@ -15,6 +15,7 @@ import CostCalculatorPage from './pages/CostCalculatorPage.jsx'
 import NpvIrrCalculatorPage from './pages/NpvIrrCalculatorPage.jsx'
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage.jsx'
 import CookiePolicyPage from './pages/CookiePolicyPage.jsx'
+import ContactPage from './pages/ContactPage.jsx'
 import CookieConsentBanner from './components/CookieConsentBanner.jsx'
 
 function ScrollToTop() {
@@ -50,6 +51,7 @@ function App() {
         <Route path="/solar-investment-calculator" element={<NpvIrrCalculatorPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/cookie-policy" element={<CookiePolicyPage />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Routes>
       <CookieConsentBanner />
     </>

@@ -174,8 +174,11 @@ function CookiePolicyPage() {
             <div>
               <h2 className="text-lg font-bold text-slate-900">8. Contact Us</h2>
               <p className="mt-2">
-                Questions about this Cookie Policy can be sent to{' '}
-                <strong>privacy@commercialsolarcalculator.com</strong>.
+                Questions about this Cookie Policy can be sent via our{' '}
+                <Link to="/contact" className="font-semibold text-emerald-600 hover:underline">
+                  Contact Form
+                </Link>
+                .
               </p>
             </div>
           </div>
