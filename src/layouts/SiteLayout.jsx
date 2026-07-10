@@ -13,6 +13,7 @@ function SiteLayout({
   title,
   description,
   breadcrumbLabel,
+  breadcrumbParent,
   children,
 }) {
   const [isNavOpen, setIsNavOpen] = useState(false)
@@ -62,7 +63,7 @@ function SiteLayout({
 
         <TrustBar />
 
-        {breadcrumbLabel && <Breadcrumbs label={breadcrumbLabel} />}
+        {breadcrumbLabel && <Breadcrumbs label={breadcrumbLabel} parent={breadcrumbParent} />}
 
         <main className="flex-1 px-4 py-8 sm:px-8">{children}</main>
 

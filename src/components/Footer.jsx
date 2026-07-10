@@ -11,6 +11,7 @@ const MODAL_FOOTER_LINKS = [
 
 // Rendered as real links to their own standalone, indexable pages.
 const PAGE_FOOTER_LINKS = [
+  { path: '/blog', label: 'Blog' },
   { path: '/privacy-policy', label: 'Privacy Policy' },
   { path: '/cookie-policy', label: 'Cookie Policy' },
   { path: '/contact', label: 'Contact Us' },

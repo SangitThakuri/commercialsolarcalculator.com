@@ -7,7 +7,11 @@ import { CALCULATOR_PAGES, CATEGORIES } from '../data/calculatorPages.js'
  * Energy Analysis) — deliberately NOT alphabetical, so related tools stay together the way
  * a visitor would actually shop for them. Excludes the page you're currently on.
  */
-function RelatedCalculators({ currentPath }) {
+function RelatedCalculators({
+  currentPath,
+  heading = 'Explore More Commercial Solar Calculators',
+  description = "Every tool below runs the same instant, browser-only calculations — pick the one that matches what you're trying to figure out.",
+}) {
   const groups = Object.values(CATEGORIES)
     .map((category) => ({
       category,
@@ -17,12 +21,9 @@ function RelatedCalculators({ currentPath }) {
 
   return (
     <section aria-label="Related calculators" className="animate-fade-in-up">
-      <h2 className="text-xl font-bold text-slate-900 dark:text-white sm:text-2xl">
-        Explore More Commercial Solar Calculators
-      </h2>
+      <h2 className="text-xl font-bold text-slate-900 dark:text-white sm:text-2xl">{heading}</h2>
       <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-        Every tool below runs the same instant, browser-only calculations — pick the one that
-        matches what you're trying to figure out.
+        {description}
       </p>
 
       <div className="mt-8 space-y-8">

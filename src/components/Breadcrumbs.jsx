@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-function Breadcrumbs({ label }) {
+function Breadcrumbs({ label, parent }) {
   return (
     <nav
       aria-label="Breadcrumb"
@@ -13,6 +13,16 @@ function Breadcrumbs({ label }) {
           </Link>
         </li>
         <li aria-hidden="true">/</li>
+        {parent && (
+          <>
+            <li>
+              <Link to={parent.path} className="transition hover:text-emerald-600 dark:hover:text-emerald-400">
+                {parent.label}
+              </Link>
+            </li>
+            <li aria-hidden="true">/</li>
+          </>
+        )}
         <li aria-current="page" className="font-medium text-slate-700 dark:text-slate-300">
           {label}
         </li>

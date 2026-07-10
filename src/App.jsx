@@ -22,6 +22,8 @@ const RoofSpaceCalculatorPage = lazy(() => import('./pages/RoofSpaceCalculatorPa
 const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage.jsx'))
 const CookiePolicyPage = lazy(() => import('./pages/CookiePolicyPage.jsx'))
 const ContactPage = lazy(() => import('./pages/ContactPage.jsx'))
+const BlogIndexPage = lazy(() => import('./pages/BlogIndexPage.jsx'))
+const BlogArticlePage = lazy(() => import('./pages/BlogArticlePage.jsx'))
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -74,6 +76,8 @@ function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/cookie-policy" element={<CookiePolicyPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/blog" element={<BlogIndexPage />} />
+          <Route path="/blog/:slug" element={<BlogArticlePage />} />
         </Routes>
       </Suspense>
       <CookieConsentBanner />

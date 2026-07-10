@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import SiteLayout from '../layouts/SiteLayout.jsx'
 import InputPanel from '../components/InputPanel.jsx'
 import ResultsSummary from '../components/ResultsSummary.jsx'
@@ -12,8 +13,12 @@ import FaqAccordion from '../components/FaqAccordion.jsx'
 import SeoIntro from '../components/SeoIntro.jsx'
 import SolarEducationGuide from '../components/SolarEducationGuide.jsx'
 import RelatedCalculators from '../components/RelatedCalculators.jsx'
+import WhyThisMatters from '../components/WhyThisMatters.jsx'
+import NewsletterSignup from '../components/NewsletterSignup.jsx'
 import CtaBanner from '../components/CtaBanner.jsx'
+import ArticleCard from '../components/blog/ArticleCard.jsx'
 import { usePageMeta } from '../hooks/usePageMeta.js'
+import { BLOG_POSTS } from '../data/blogPosts.js'
 import {
   calculateSolarMetrics,
   generateCashFlowProjection,
@@ -203,13 +208,38 @@ function HomePage() {
 
           <FinancingComparison netCapital={metrics.netCapital} annualSavings={metrics.annualSavings} />
 
-          <RelatedCalculators currentPath="/" />
+          <RelatedCalculators
+            currentPath="/"
+            heading="Popular Calculators"
+            description="The most-used tools on this site — pick the one that matches what you're trying to figure out."
+          />
+
+          <WhyThisMatters />
 
           <SeoIntro />
 
           <SolarEducationGuide />
 
+          <section aria-label="Latest guides" className="animate-fade-in-up">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white sm:text-2xl">Latest Guides</h2>
+              <Link
+                to="/blog"
+                className="text-sm font-semibold text-emerald-600 hover:underline dark:text-emerald-400"
+              >
+                View All Articles →
+              </Link>
+            </div>
+            <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {BLOG_POSTS.slice(0, 3).map((post) => (
+                <ArticleCard key={post.slug} post={post} />
+              ))}
+            </div>
+          </section>
+
           <FaqAccordion />
+
+          <NewsletterSignup />
 
           <CtaBanner />
         </div>
