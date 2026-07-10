@@ -1,3 +1,5 @@
+import { useTheme } from '../context/ThemeContext.jsx'
+
 const CHART_WIDTH = 800
 const CHART_HEIGHT = 260
 const MARGIN = { top: 28, right: 16, bottom: 28, left: 16 }
@@ -9,6 +11,9 @@ const currencyFormatter = new Intl.NumberFormat('en-US', {
 })
 
 function SavingsChart({ series }) {
+  const { theme } = useTheme()
+  const axisTextColor = theme === 'dark' ? '#94a3b8' : '#64748b'
+
   const plotWidth = CHART_WIDTH - MARGIN.left - MARGIN.right
   const plotHeight = CHART_HEIGHT - MARGIN.top - MARGIN.bottom
 
@@ -51,7 +56,7 @@ function SavingsChart({ series }) {
                   y={CHART_HEIGHT - MARGIN.bottom + 16}
                   textAnchor="middle"
                   fontSize="11"
-                  fill="#64748b"
+                  fill={axisTextColor}
                 >
                   {point.year}
                 </text>
@@ -60,7 +65,7 @@ function SavingsChart({ series }) {
           )
         })}
       </svg>
-      <p className="mt-2 text-center text-xs text-slate-400">
+      <p className="mt-2 text-center text-xs text-slate-400 dark:text-slate-500">
         Annual utility bill savings: {currencyFormatter.format(firstYear.savings)} in Year 1,
         growing to {currencyFormatter.format(lastYear.savings)} by Year {lastYear.year} at 3%
         annual utility rate inflation.

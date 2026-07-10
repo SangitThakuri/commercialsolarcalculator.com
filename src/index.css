@@ -69,6 +69,22 @@ input[type='range'].premium-slider::-moz-range-progress {
   background: #10b981;
 }
 
+/* Dark mode: darken the "unfilled" portion of the track so it still reads as subtle
+   against a dark card, instead of the light-mode gray showing up too brightly. */
+.dark input[type='range'].premium-slider {
+  background: linear-gradient(
+    to right,
+    #10b981 0%,
+    #10b981 var(--range-progress, 0%),
+    #334155 var(--range-progress, 0%),
+    #334155 100%
+  );
+}
+
+.dark input[type='range'].premium-slider::-moz-range-track {
+  background: #334155;
+}
+
 input[type='range'].premium-slider:focus-visible::-webkit-slider-thumb {
   box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.3);
 }

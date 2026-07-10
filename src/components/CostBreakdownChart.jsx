@@ -27,7 +27,7 @@ function CostBreakdownChart({ breakdown }) {
       <ul className="mt-4 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-2">
         {breakdown.map((item, index) => (
           <li key={item.label} className="flex items-center justify-between gap-2 text-sm">
-            <span className="flex items-center gap-2 text-slate-600">
+            <span className="flex items-center gap-2 text-slate-600 dark:text-slate-300">
               <span
                 className="h-2.5 w-2.5 flex-shrink-0 rounded-sm"
                 style={{ backgroundColor: COLORS[index % COLORS.length] }}
@@ -35,9 +35,11 @@ function CostBreakdownChart({ breakdown }) {
               />
               {item.label}
             </span>
-            <span className="whitespace-nowrap font-semibold text-slate-900">
+            <span className="whitespace-nowrap font-semibold text-slate-900 dark:text-white">
               {currencyFormatter.format(item.cost)}{' '}
-              <span className="font-normal text-slate-400">({Math.round(item.percent * 100)}%)</span>
+              <span className="font-normal text-slate-400 dark:text-slate-500">
+                ({Math.round(item.percent * 100)}%)
+              </span>
             </span>
           </li>
         ))}

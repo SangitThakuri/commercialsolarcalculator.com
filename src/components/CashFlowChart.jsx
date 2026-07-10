@@ -1,8 +1,15 @@
+import { useTheme } from '../context/ThemeContext.jsx'
+
 const CHART_WIDTH = 800
 const CHART_HEIGHT = 340
 const MARGIN = { top: 40, right: 16, bottom: 28, left: 16 }
 
 function CashFlowChart({ projection, crossoverYear }) {
+  const { theme } = useTheme()
+  const isDark = theme === 'dark'
+  const axisTextColor = isDark ? '#94a3b8' : '#64748b'
+  const baselineColor = isDark ? '#334155' : '#cbd5e1'
+
   const plotWidth = CHART_WIDTH - MARGIN.left - MARGIN.right
   const plotHeight = CHART_HEIGHT - MARGIN.top - MARGIN.bottom
 
@@ -31,7 +38,7 @@ function CashFlowChart({ projection, crossoverYear }) {
           y1={baselineY}
           x2={CHART_WIDTH - MARGIN.right}
           y2={baselineY}
-          stroke="#cbd5e1"
+          stroke={baselineColor}
           strokeWidth={1}
         />
 
@@ -59,7 +66,7 @@ function CashFlowChart({ projection, crossoverYear }) {
                   y={CHART_HEIGHT - MARGIN.bottom + 16}
                   textAnchor="middle"
                   fontSize="11"
-                  fill="#64748b"
+                  fill={axisTextColor}
                 >
                   {point.year}
                 </text>
@@ -81,7 +88,7 @@ function CashFlowChart({ projection, crossoverYear }) {
           </g>
         )}
       </svg>
-      <p className="mt-2 text-center text-xs text-slate-400">
+      <p className="mt-2 text-center text-xs text-slate-400 dark:text-slate-500">
         Year-by-year cumulative cash position, assuming 3% annual energy inflation.
       </p>
     </div>

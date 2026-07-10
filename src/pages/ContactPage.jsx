@@ -44,12 +44,16 @@ function buildMailtoHref(form) {
 function FormField({ id, label, error, children }) {
   return (
     <div>
-      <label htmlFor={id} className="text-sm font-medium text-slate-700">
+      <label htmlFor={id} className="text-sm font-medium text-slate-700 dark:text-slate-300">
         {label}
       </label>
       <div className="mt-1.5">{children}</div>
       {error && (
-        <p id={`${id}-error`} className="mt-1.5 text-xs font-medium text-red-600" role="alert">
+        <p
+          id={`${id}-error`}
+          className="mt-1.5 text-xs font-medium text-red-600 dark:text-red-400"
+          role="alert"
+        >
           {error}
         </p>
       )}
@@ -96,7 +100,7 @@ function ContactPage() {
   }
 
   const inputClassName =
-    'w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30'
+    'w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 dark:border-slate-700 dark:bg-slate-900 dark:text-white'
 
   return (
     <SiteLayout
@@ -105,11 +109,16 @@ function ContactPage() {
       breadcrumbLabel={TITLE}
     >
       <div className="mx-auto max-w-xl">
-        <section className="animate-fade-in-up rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-10">
+        <section className="animate-fade-in-up rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-10">
           {status === 'success' ? (
             <div className="py-6 text-center">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100">
-                <svg className="h-6 w-6 text-emerald-600" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/40">
+                <svg
+                  className="h-6 w-6 text-emerald-600 dark:text-emerald-400"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
                   <path
                     d="M5 13l4 4L19 7"
                     stroke="currentColor"
@@ -119,10 +128,10 @@ function ContactPage() {
                   />
                 </svg>
               </div>
-              <h2 className="mt-4 text-lg font-bold text-slate-900">
+              <h2 className="mt-4 text-lg font-bold text-slate-900 dark:text-white">
                 Your email app should be opening now
               </h2>
-              <p className="mx-auto mt-2 max-w-sm text-sm leading-relaxed text-slate-600">
+              <p className="mx-auto mt-2 max-w-sm text-sm leading-relaxed text-slate-600 dark:text-slate-300">
                 We've prepared a message addressed to our team with the details you entered —
                 just hit send from your email app. If it didn't open automatically, you can reach
                 us directly at <strong>{CONTACT_EMAIL}</strong>.
@@ -130,15 +139,17 @@ function ContactPage() {
               <button
                 type="button"
                 onClick={handleReset}
-                className="mt-6 rounded-lg border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-emerald-400 hover:text-emerald-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40"
+                className="mt-6 rounded-lg border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-emerald-400 hover:text-emerald-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40 dark:border-slate-700 dark:text-slate-200 dark:hover:border-emerald-400 dark:hover:text-emerald-400"
               >
                 Send another message
               </button>
             </div>
           ) : (
             <>
-              <h2 className="text-lg font-semibold text-slate-900">Send Us a Message</h2>
-              <p className="mt-1.5 text-sm text-slate-500">
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
+                Send Us a Message
+              </h2>
+              <p className="mt-1.5 text-sm text-slate-500 dark:text-slate-400">
                 Fill this out and your email app will open with everything ready to send.
               </p>
 

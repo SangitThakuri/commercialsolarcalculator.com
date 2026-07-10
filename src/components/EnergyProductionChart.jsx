@@ -1,3 +1,5 @@
+import { useTheme } from '../context/ThemeContext.jsx'
+
 const CHART_WIDTH = 800
 const CHART_HEIGHT = 260
 const MARGIN = { top: 28, right: 16, bottom: 28, left: 16 }
@@ -5,6 +7,9 @@ const MARGIN = { top: 28, right: 16, bottom: 28, left: 16 }
 const kwhFormatter = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 })
 
 function EnergyProductionChart({ production }) {
+  const { theme } = useTheme()
+  const axisTextColor = theme === 'dark' ? '#94a3b8' : '#64748b'
+
   const plotWidth = CHART_WIDTH - MARGIN.left - MARGIN.right
   const plotHeight = CHART_HEIGHT - MARGIN.top - MARGIN.bottom
 
@@ -47,7 +52,7 @@ function EnergyProductionChart({ production }) {
                   y={CHART_HEIGHT - MARGIN.bottom + 16}
                   textAnchor="middle"
                   fontSize="11"
-                  fill="#64748b"
+                  fill={axisTextColor}
                 >
                   {point.year}
                 </text>
@@ -56,7 +61,7 @@ function EnergyProductionChart({ production }) {
           )
         })}
       </svg>
-      <p className="mt-2 text-center text-xs text-slate-400">
+      <p className="mt-2 text-center text-xs text-slate-400 dark:text-slate-500">
         Estimated annual output: {kwhFormatter.format(firstYear.kwh)} kWh in Year 1, declining to{' '}
         {kwhFormatter.format(lastYear.kwh)} kWh by Year {lastYear.year} at a 0.5% annual panel
         degradation rate.

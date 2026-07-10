@@ -1,3 +1,5 @@
+import { useTheme } from '../context/ThemeContext.jsx'
+
 const CHART_WIDTH = 800
 const CHART_HEIGHT = 280
 const MARGIN = { top: 28, right: 16, bottom: 40, left: 16 }
@@ -9,6 +11,11 @@ const currencyFormatter = new Intl.NumberFormat('en-US', {
 })
 
 function TaxBenefitTimeline({ itcAmount, macrsTimeline }) {
+  const { theme } = useTheme()
+  const isDark = theme === 'dark'
+  const axisTextColor = isDark ? '#94a3b8' : '#64748b'
+  const valueLabelColor = isDark ? '#e2e8f0' : '#334155'
+
   const plotWidth = CHART_WIDTH - MARGIN.left - MARGIN.right
   const plotHeight = CHART_HEIGHT - MARGIN.top - MARGIN.bottom
 
@@ -68,7 +75,7 @@ function TaxBenefitTimeline({ itcAmount, macrsTimeline }) {
                 textAnchor="middle"
                 fontSize="10.5"
                 fontWeight="600"
-                fill="#334155"
+                fill={valueLabelColor}
               >
                 {currencyFormatter.format(bar.total)}
               </text>
@@ -77,7 +84,7 @@ function TaxBenefitTimeline({ itcAmount, macrsTimeline }) {
                 y={CHART_HEIGHT - MARGIN.bottom + 16}
                 textAnchor="middle"
                 fontSize="11"
-                fill="#64748b"
+                fill={axisTextColor}
               >
                 Yr {bar.year}
               </text>
@@ -85,7 +92,7 @@ function TaxBenefitTimeline({ itcAmount, macrsTimeline }) {
           )
         })}
       </svg>
-      <div className="mt-2 flex items-center justify-center gap-5 text-xs text-slate-500">
+      <div className="mt-2 flex items-center justify-center gap-5 text-xs text-slate-500 dark:text-slate-400">
         <span className="flex items-center gap-1.5">
           <span className="h-2.5 w-2.5 rounded-sm bg-indigo-500" aria-hidden="true" />
           Section 48E ITC (Year 1)
