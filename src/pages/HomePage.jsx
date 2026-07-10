@@ -11,6 +11,8 @@ import FinancingComparison from '../components/FinancingComparison.jsx'
 import FaqAccordion from '../components/FaqAccordion.jsx'
 import SeoIntro from '../components/SeoIntro.jsx'
 import SolarEducationGuide from '../components/SolarEducationGuide.jsx'
+import RelatedCalculators from '../components/RelatedCalculators.jsx'
+import CtaBanner from '../components/CtaBanner.jsx'
 import { usePageMeta } from '../hooks/usePageMeta.js'
 import {
   calculateSolarMetrics,
@@ -201,11 +203,15 @@ function HomePage() {
 
           <FinancingComparison netCapital={metrics.netCapital} annualSavings={metrics.annualSavings} />
 
+          <RelatedCalculators currentPath="/" />
+
           <SeoIntro />
+
+          <SolarEducationGuide />
 
           <FaqAccordion />
 
-          <SolarEducationGuide />
+          <CtaBanner />
         </div>
       </div>
     </SiteLayout>

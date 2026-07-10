@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 
-const DESKTOP_QUERY = '(min-width: 1024px)'
+// Matches Tailwind's `xl` breakpoint — the sidebar is a permanent column at 1280px+ and a
+// collapsible drawer on everything below that (tablet and mobile).
+const DESKTOP_QUERY = '(min-width: 1280px)'
 
 export function useIsDesktop() {
   const [isDesktop, setIsDesktop] = useState(

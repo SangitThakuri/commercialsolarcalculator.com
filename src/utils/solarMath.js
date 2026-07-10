@@ -296,3 +296,123 @@ export function calculateNpvAndIrr(netCapital, annualSavings, discountRate, year
 
   return { npv, irr, cashFlows, discountedProjection, discountedCrossoverYear }
 }
+
+// --- Commercial Demand Charge Calculator ---------------------------------------------
+
+export function calculateDemandCharge(peakDemandKw, demandRatePerKw, targetReductionPercent) {
+  const monthlyDemandCharge = peakDemandKw * demandRatePerKw
+  const annualDemandCharge = monthlyDemandCharge * 12
+
+  const shavedKw = peakDemandKw * (targetReductionPercent / 100)
+  const monthlyDemandChargeAfter = (peakDemandKw - shavedKw) * demandRatePerKw
+  const monthlySavings = monthlyDemandCharge - monthlyDemandChargeAfter
+  const annualSavings = monthlySavings * 12
+
+  // A 2-hour discharge window is a common rule-of-thumb sizing basis for peak-shaving
+  // (distinct from the longer outage-backup duration used elsewhere in this calculator).
+  const battery = calculateBatteryStorage(shavedKw, 2)
+
+  return {
+    monthlyDemandCharge,
+    annualDemandCharge,
+    shavedKw,
+    monthlySavings,
+    annualSavings,
+    batteryCapacityKwh: battery.usableCapacityKwh,
+    batteryCost: battery.estimatedCost,
+  }
+}
+
+// --- Solar Financing Calculator (Cash vs. Loan vs. Lease) ----------------------------
+
+export function compareFinancingOptions(monthlyBill, stateTaxRate, loanApr, loanTermYears) {
+  const metrics = calculateSolarMetrics(monthlyBill, stateTaxRate)
+  const { monthlyPayment } = generateAmortizationSchedule(metrics.netCapital, loanApr, loanTermYears)
+  const lease = calculateLeaseComparison(monthlyBill, metrics.netCapital, metrics.annualSavings)
+  const monthlyOwnershipSavings = metrics.annualSavings / 12
+
+  return {
+    cash: {
+      upfrontCost: metrics.netCapital,
+      monthlyNetCashFlow: monthlyOwnershipSavings,
+      paybackYears: metrics.paybackPeriod,
+    },
+    loan: {
+      upfrontCost: 0,
+      monthlyPayment,
+      monthlyNetCashFlow: monthlyOwnershipSavings - monthlyPayment,
+    },
+    lease: {
+      upfrontCost: 0,
+      monthlyPayment: lease.monthlyLeasePayment,
+      monthlyNetCashFlow: lease.monthlyLeaseSavings,
+    },
+  }
+}
+
+// --- Commercial EV Charging Calculator ------------------------------------------------
+
+// Blended national-average installed cost and power draw per charging port.
+const EV_CHARGER_SPECS = {
+  level2: { installedCostPerPort: 6000, powerKw: 11 },
+  dcFast: { installedCostPerPort: 65000, powerKw: 100 },
+}
+
+export function calculateEvChargingRoi({
+  chargerType,
+  portCount,
+  sessionsPerDayPerPort,
+  avgKwhPerSession,
+  pricePerKwh,
+  electricityCostPerKwh,
+}) {
+  const spec = EV_CHARGER_SPECS[chargerType]
+  const installedCost = spec.installedCostPerPort * portCount
+
+  const dailySessions = sessionsPerDayPerPort * portCount
+  const dailyKwhDelivered = dailySessions * avgKwhPerSession
+  const dailyRevenue = dailyKwhDelivered * pricePerKwh
+  const dailyElectricityCost = dailyKwhDelivered * electricityCostPerKwh
+  const dailyNetProfit = dailyRevenue - dailyElectricityCost
+
+  const annualNetProfit = dailyNetProfit * 365
+  const paybackYears = annualNetProfit > 0 ? installedCost / annualNetProfit : null
+
+  return {
+    installedCost,
+    totalPowerKw: spec.powerKw * portCount,
+    dailyKwhDelivered,
+    dailyRevenue,
+    dailyElectricityCost,
+    dailyNetProfit,
+    annualNetProfit,
+    paybackYears,
+  }
+}
+
+// --- Roof Space Calculator (reverse of Panel Size: roof dimensions -> system size) ---
+
+const USABLE_ROOF_FACTOR = 0.7 // typical usable share after setbacks, HVAC units, walkways
+const SQFT_PER_PANEL = 21 // ~6ft x 3.5ft standard commercial panel footprint
+const PANEL_WATTAGE_W = 450
+
+export function calculateFromRoofArea(roofLengthFt, roofWidthFt) {
+  const totalRoofSqFt = roofLengthFt * roofWidthFt
+  const usableRoofSqFt = totalRoofSqFt * USABLE_ROOF_FACTOR
+  const panelCount = Math.floor(usableRoofSqFt / SQFT_PER_PANEL)
+  const systemSizeKw = (panelCount * PANEL_WATTAGE_W) / 1000
+  const annualProductionKwh = systemSizeKw * MONTHLY_PRODUCTION_PER_KW * 12
+
+  // Inverse of estimateSystemSizeKw(): back out the monthly bill this system size would
+  // typically be sized for, so visitors who start from roof space can gauge bill offset.
+  const estimatedMonthlyBillOffset = (systemSizeKw * MONTHLY_PRODUCTION_PER_KW / 1.2) * AVG_COMMERCIAL_RATE_PER_KWH
+
+  return {
+    totalRoofSqFt,
+    usableRoofSqFt,
+    panelCount,
+    systemSizeKw,
+    annualProductionKwh,
+    estimatedMonthlyBillOffset,
+  }
+}
