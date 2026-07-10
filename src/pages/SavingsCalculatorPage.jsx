@@ -44,10 +44,10 @@ function SavingsCalculatorPage() {
     >
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-start">
         <section
-          className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8 lg:col-span-4"
+          className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8 lg:col-span-4"
           aria-label="Savings calculator inputs"
         >
-          <h2 className="text-lg font-semibold text-slate-900">Your Input</h2>
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Your Input</h2>
           <div className="mt-6">
             <SliderNumberField
               id="savings-bill"
@@ -68,8 +68,8 @@ function SavingsCalculatorPage() {
         </section>
 
         <div className="flex flex-col gap-6 lg:col-span-8">
-          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
-            <h2 className="text-lg font-semibold text-slate-900">Your Estimated Savings</h2>
+          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8">
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Your Estimated Savings</h2>
             <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
               <StatTile label="Year 1 Savings" value={metrics.annualSavings} format={(v) => currencyFormatter.format(v)} />
               <StatTile
@@ -95,16 +95,16 @@ function SavingsCalculatorPage() {
             ]}
           />
 
-          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
-            <h2 className="text-lg font-semibold text-slate-900">Annual Savings Over Time</h2>
+          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8">
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Annual Savings Over Time</h2>
             <div className="mt-6">
               <SavingsChart series={series} />
             </div>
           </section>
 
-          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
-            <h2 className="text-xl font-bold text-slate-900">Why Savings Grow Every Year</h2>
-            <div className="mt-4 space-y-4 text-sm leading-relaxed text-slate-600">
+          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Why Savings Grow Every Year</h2>
+            <div className="mt-4 space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
               <p>
                 This estimate assumes solar offsets 95% of your current usage (accounting for a
                 small utility interconnection/standby fee) and that utility rates continue rising

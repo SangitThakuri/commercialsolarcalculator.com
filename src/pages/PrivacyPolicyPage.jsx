@@ -22,12 +22,12 @@ function PrivacyPolicyPage() {
       breadcrumbLabel={TITLE}
     >
       <div className="mx-auto max-w-3xl">
-        <section className="animate-fade-in-up rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-10">
-          <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
+        <section className="animate-fade-in-up rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-10">
+          <p className="text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">
             Last updated: {LAST_UPDATED}
           </p>
 
-          <div className="prose-legal mt-4 space-y-8 text-sm leading-relaxed text-slate-600">
+          <div className="prose-legal mt-4 space-y-8 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
             <p>
               This Privacy Policy explains how Commercial Solar Calculator
               (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) handles personal data in
@@ -36,7 +36,7 @@ function PrivacyPolicyPage() {
             </p>
 
             <div>
-              <h2 className="text-lg font-bold text-slate-900">1. Who We Are</h2>
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">1. Who We Are</h2>
               <p className="mt-2">
                 Commercial Solar Calculator operates commercialsolarcalculator.com. For any
                 privacy question or request described in this policy, reach us via our{' '}
@@ -48,7 +48,7 @@ function PrivacyPolicyPage() {
             </div>
 
             <div>
-              <h2 className="text-lg font-bold text-slate-900">2. What Personal Data We Process</h2>
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">2. What Personal Data We Process</h2>
               <p className="mt-2">We process the following categories of data:</p>
               <ul className="mt-3 list-disc space-y-2 pl-5">
                 <li>
@@ -84,7 +84,7 @@ function PrivacyPolicyPage() {
             </div>
 
             <div>
-              <h2 className="text-lg font-bold text-slate-900">3. Legal Basis for Processing</h2>
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">3. Legal Basis for Processing</h2>
               <p className="mt-2">Depending on the data and how you interact with the Site, we rely on:</p>
               <ul className="mt-3 list-disc space-y-2 pl-5">
                 <li>
@@ -109,7 +109,7 @@ function PrivacyPolicyPage() {
             </div>
 
             <div>
-              <h2 className="text-lg font-bold text-slate-900">4. How Data Is Stored</h2>
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">4. How Data Is Stored</h2>
               <ul className="mt-3 list-disc space-y-2 pl-5">
                 <li>
                   Calculator inputs (electric bill, tax rate, system size, and similar figures)
@@ -127,7 +127,7 @@ function PrivacyPolicyPage() {
             </div>
 
             <div>
-              <h2 className="text-lg font-bold text-slate-900">
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">
                 5. Sharing With Solar Installation Partners
               </h2>
               <p className="mt-2">
@@ -141,7 +141,7 @@ function PrivacyPolicyPage() {
             </div>
 
             <div>
-              <h2 className="text-lg font-bold text-slate-900">6. Your Rights (GDPR &amp; CCPA)</h2>
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">6. Your Rights (GDPR &amp; CCPA)</h2>
               <p className="mt-2">Depending on where you live, you may have the right to:</p>
               <ul className="mt-3 list-disc space-y-2 pl-5">
                 <li>
@@ -177,7 +177,7 @@ function PrivacyPolicyPage() {
             </div>
 
             <div>
-              <h2 className="text-lg font-bold text-slate-900">7. No Financial, Tax, or Legal Advice</h2>
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">7. No Financial, Tax, or Legal Advice</h2>
               <p className="mt-2">
                 Nothing on this Site, and nothing processed through our calculators, constitutes
                 financial, tax, engineering, or legal advice. Calculator outputs are simplified,
@@ -188,7 +188,7 @@ function PrivacyPolicyPage() {
             </div>
 
             <div>
-              <h2 className="text-lg font-bold text-slate-900">8. Children's Privacy</h2>
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">8. Children's Privacy</h2>
               <p className="mt-2">
                 This Site is intended for business and commercial property decision-makers and is
                 not directed at children. We do not knowingly collect personal data from children
@@ -197,7 +197,7 @@ function PrivacyPolicyPage() {
             </div>
 
             <div>
-              <h2 className="text-lg font-bold text-slate-900">9. Changes to This Policy</h2>
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">9. Changes to This Policy</h2>
               <p className="mt-2">
                 We may update this Privacy Policy from time to time. Material changes will be
                 reflected by an updated &quot;Last updated&quot; date at the top of this page.
@@ -205,7 +205,7 @@ function PrivacyPolicyPage() {
             </div>
 
             <div>
-              <h2 className="text-lg font-bold text-slate-900">10. Contact Us</h2>
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">10. Contact Us</h2>
               <p className="mt-2">
                 Questions about this Privacy Policy or your data can be sent via our{' '}
                 <Link to="/contact" className="font-semibold text-emerald-600 hover:underline">

@@ -108,9 +108,9 @@ function Footer() {
   const [activeModal, setActiveModal] = useState(null)
 
   return (
-    <footer className="mt-12 border-t border-slate-800 bg-slate-900 py-8 text-slate-400">
+    <footer className="mt-12 border-t border-slate-200 bg-slate-50 py-8 text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">
       <div className="mx-auto max-w-5xl px-4">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-300">
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-700 dark:text-slate-300">
           Free Commercial Solar Calculators
         </h2>
         <nav aria-label="All calculators" className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2 sm:grid-cols-3">
@@ -118,14 +118,14 @@ function Footer() {
             <Link
               key={page.path}
               to={page.path}
-              className="text-xs text-slate-400 transition hover:text-emerald-400"
+              className="text-xs text-slate-600 transition hover:text-emerald-600 dark:text-slate-400 dark:hover:text-emerald-400"
             >
               {page.label}
             </Link>
           ))}
         </nav>
 
-        <h2 className="mt-8 border-t border-slate-800 pt-6 text-sm font-semibold uppercase tracking-wide text-slate-300">
+        <h2 className="mt-8 border-t border-slate-200 pt-6 text-sm font-semibold uppercase tracking-wide text-slate-700 dark:border-slate-800 dark:text-slate-300">
           Legal &amp; Tax Disclaimer
         </h2>
         <p className="mt-3 text-xs leading-relaxed">
@@ -144,14 +144,14 @@ function Footer() {
 
         <nav
           aria-label="Site information"
-          className="mt-6 flex flex-wrap gap-x-6 gap-y-2 border-t border-slate-800 pt-6 text-xs"
+          className="mt-6 flex flex-wrap gap-x-6 gap-y-2 border-t border-slate-200 pt-6 text-xs dark:border-slate-800"
         >
           {MODAL_FOOTER_LINKS.map((link) => (
             <button
               key={link.id}
               type="button"
               onClick={() => setActiveModal(link.id)}
-              className="font-medium text-slate-300 underline decoration-slate-600 underline-offset-4 transition hover:text-emerald-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40"
+              className="font-medium text-slate-700 underline decoration-slate-400 underline-offset-4 transition hover:text-emerald-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40 dark:text-slate-300 dark:decoration-slate-600 dark:hover:text-emerald-400"
             >
               {link.label}
             </button>
@@ -160,14 +160,14 @@ function Footer() {
             <Link
               key={link.path}
               to={link.path}
-              className="font-medium text-slate-300 underline decoration-slate-600 underline-offset-4 transition hover:text-emerald-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40"
+              className="font-medium text-slate-700 underline decoration-slate-400 underline-offset-4 transition hover:text-emerald-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40 dark:text-slate-300 dark:decoration-slate-600 dark:hover:text-emerald-400"
             >
               {link.label}
             </Link>
           ))}
         </nav>
 
-        <p className="mt-4 text-xs text-slate-500">
+        <p className="mt-4 text-xs text-slate-500 dark:text-slate-500">
           &copy; {new Date().getFullYear()} Commercial Solar Calculator. All rights reserved.
         </p>
       </div>

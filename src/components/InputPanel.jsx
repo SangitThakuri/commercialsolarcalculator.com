@@ -8,7 +8,7 @@ function StateDropdown() {
   return (
     <div>
       <div className="flex items-center gap-1.5">
-        <label htmlFor="property-state" className="text-sm font-medium text-slate-700">
+        <label htmlFor="property-state" className="text-sm font-medium text-slate-700 dark:text-slate-300">
           Property Location (State)
         </label>
         <InfoTooltip
@@ -22,7 +22,7 @@ function StateDropdown() {
           value={selectedState}
           onChange={(event) => setSelectedState(event.target.value)}
           aria-label="Property location state"
-          className="w-full appearance-none rounded-lg border border-slate-200 bg-slate-50 py-2.5 pl-3 pr-9 text-sm font-medium text-slate-700 transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
+          className="w-full appearance-none rounded-lg border border-slate-200 bg-slate-50 py-2.5 pl-3 pr-9 text-sm font-medium text-slate-700 transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
         >
           {US_STATES.map((state) => (
             <option key={state} value={state}>
@@ -31,7 +31,7 @@ function StateDropdown() {
           ))}
         </select>
         <svg
-          className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
+          className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 dark:text-slate-500"
           viewBox="0 0 20 20"
           fill="none"
           aria-hidden="true"
@@ -101,14 +101,14 @@ export function SliderNumberField({
     <div>
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-1.5">
-          <label htmlFor={id} className="text-sm font-medium text-slate-700">
+          <label htmlFor={id} className="text-sm font-medium text-slate-700 dark:text-slate-300">
             {label}
           </label>
           {tooltip && <InfoTooltip id={`${id}-tooltip`} text={tooltip} />}
         </div>
         <div className="relative">
           {prefix && (
-            <span className="pointer-events-none absolute inset-y-0 left-2.5 flex items-center text-sm font-semibold text-slate-400">
+            <span className="pointer-events-none absolute inset-y-0 left-2.5 flex items-center text-sm font-semibold text-slate-400 dark:text-slate-500">
               {prefix}
             </span>
           )}
@@ -136,10 +136,10 @@ export function SliderNumberField({
               paddingLeft: prefix ? `${prefix.length + 1.25}ch` : '0.75rem',
               paddingRight: suffix ? `${suffix.length + 1.25}ch` : '0.75rem',
             }}
-            className="w-28 rounded-lg border border-slate-200 bg-slate-50 py-1.5 text-right text-sm font-bold text-emerald-600 transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 sm:w-32"
+            className="w-28 rounded-lg border border-slate-200 bg-slate-50 py-1.5 text-right text-sm font-bold text-emerald-600 transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 dark:border-slate-700 dark:bg-slate-900 dark:text-emerald-400 sm:w-32"
           />
           {suffix && (
-            <span className="pointer-events-none absolute inset-y-0 right-2.5 flex items-center text-sm font-semibold text-slate-400">
+            <span className="pointer-events-none absolute inset-y-0 right-2.5 flex items-center text-sm font-semibold text-slate-400 dark:text-slate-500">
               {suffix}
             </span>
           )}
@@ -178,12 +178,12 @@ export function SliderNumberField({
           className="premium-slider w-full cursor-pointer touch-manipulation"
         />
       </div>
-      <div className="mt-1.5 flex justify-between text-xs text-slate-400">
+      <div className="mt-1.5 flex justify-between text-xs text-slate-400 dark:text-slate-500">
         <span>{minCaption}</span>
         <span>{maxCaption}</span>
       </div>
       {validationHint && (
-        <p className="mt-1.5 text-xs font-medium text-amber-600" role="status">
+        <p className="mt-1.5 text-xs font-medium text-amber-600 dark:text-amber-400" role="status">
           {validationHint}
         </p>
       )}
@@ -194,10 +194,10 @@ export function SliderNumberField({
 function InputPanel({ monthlyBill, setMonthlyBill, stateTaxRate, setStateTaxRate }) {
   return (
     <section
-      className="animate-fade-in-up rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8 print:shadow-none print:ring-0"
+      className="animate-fade-in-up rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 print:shadow-none print:ring-0 sm:p-8"
       aria-label="Solar investment inputs"
     >
-      <h2 className="text-lg font-semibold text-slate-900">Your Business Inputs</h2>
+      <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Your Business Inputs</h2>
 
       <div className="mt-6 flex flex-col gap-6">
         <StateDropdown />

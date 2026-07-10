@@ -43,10 +43,10 @@ function PaybackCalculatorPage() {
     >
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-start">
         <section
-          className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8 lg:col-span-5"
+          className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8 lg:col-span-5"
           aria-label="Payback calculator inputs"
         >
-          <h2 className="text-lg font-semibold text-slate-900">Your Inputs</h2>
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Your Inputs</h2>
           <div className="mt-6 flex flex-col gap-6">
             <SliderNumberField
               id="payback-bill"
@@ -95,8 +95,8 @@ function PaybackCalculatorPage() {
         </section>
 
         <div className="flex flex-col gap-6 lg:col-span-7">
-          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
-            <h2 className="text-lg font-semibold text-slate-900">Payback Results</h2>
+          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8">
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Payback Results</h2>
             <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
               <StatTile
                 label="Simple Payback Period"
@@ -121,11 +121,11 @@ function PaybackCalculatorPage() {
             ]}
           />
 
-          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
-            <h2 className="text-xl font-bold text-slate-900">
+          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">
               Simple Payback vs. Discounted Payback
             </h2>
-            <div className="mt-4 space-y-4 text-sm leading-relaxed text-slate-600">
+            <div className="mt-4 space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
               <p>
                 <strong>Simple payback</strong> divides your net capital required by your annual
                 utility savings — straightforward, but it ignores the time value of money: a

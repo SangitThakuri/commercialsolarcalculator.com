@@ -3,6 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <script>
+      // Runs synchronously before first paint so there's no flash of the wrong theme.
+      // Keep this in perfect sync with getInitialTheme() in src/context/ThemeContext.jsx.
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme')
+          var isDark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
+          if (isDark) document.documentElement.classList.add('dark')
+        } catch (e) {}
+      })()
+    </script>
     <link
       rel="icon"
       type="image/svg+xml"
@@ -52,7 +63,7 @@
       }
     </script>
   </head>
-  <body class="bg-slate-900">
+  <body class="bg-white dark:bg-slate-900">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

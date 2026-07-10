@@ -22,12 +22,12 @@ function CookiePolicyPage() {
       breadcrumbLabel={TITLE}
     >
       <div className="mx-auto max-w-3xl">
-        <section className="animate-fade-in-up rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-10">
-          <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
+        <section className="animate-fade-in-up rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-10">
+          <p className="text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">
             Last updated: {LAST_UPDATED}
           </p>
 
-          <div className="mt-4 space-y-8 text-sm leading-relaxed text-slate-600">
+          <div className="mt-4 space-y-8 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
             <p>
               This Cookie Policy explains how Commercial Solar Calculator uses cookies and similar
               browser storage technologies on commercialsolarcalculator.com, and how you can
@@ -39,7 +39,7 @@ function CookiePolicyPage() {
             </p>
 
             <div>
-              <h2 className="text-lg font-bold text-slate-900">
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">
                 1. What Are Cookies and Local Storage?
               </h2>
               <p className="mt-2">
@@ -54,23 +54,23 @@ function CookiePolicyPage() {
             </div>
 
             <div>
-              <h2 className="text-lg font-bold text-slate-900">
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">
                 2. Strictly Necessary Storage We Use
               </h2>
               <p className="mt-2">
                 These are essential to how the Site functions and cannot be switched off in our
                 systems. Rejecting non-essential cookies in our banner does not affect these.
               </p>
-              <div className="mt-3 overflow-x-auto rounded-lg border border-slate-200">
+              <div className="mt-3 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
                 <table className="w-full min-w-[480px] text-left text-xs">
-                  <thead className="bg-slate-50 text-slate-500">
+                  <thead className="bg-slate-50 dark:bg-slate-900/60 text-slate-500 dark:text-slate-400">
                     <tr>
                       <th className="px-3 py-2 font-semibold">Name</th>
                       <th className="px-3 py-2 font-semibold">Purpose</th>
                       <th className="px-3 py-2 font-semibold">Duration</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100">
+                  <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
                     <tr>
                       <td className="px-3 py-2 font-mono text-[11px]">cookie-consent-preference</td>
                       <td className="px-3 py-2">
@@ -92,7 +92,7 @@ function CookiePolicyPage() {
             </div>
 
             <div>
-              <h2 className="text-lg font-bold text-slate-900">
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">
                 3. Analytics Cookies (Non-Essential)
               </h2>
               <p className="mt-2">
@@ -105,7 +105,7 @@ function CookiePolicyPage() {
             </div>
 
             <div>
-              <h2 className="text-lg font-bold text-slate-900">
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">
                 4. Advertising Cookies (Non-Essential)
               </h2>
               <p className="mt-2">
@@ -118,7 +118,7 @@ function CookiePolicyPage() {
             </div>
 
             <div>
-              <h2 className="text-lg font-bold text-slate-900">5. Managing Your Cookie Choice</h2>
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">5. Managing Your Cookie Choice</h2>
               <p className="mt-2">
                 When you first visit, our cookie banner lets you choose <strong>Accept All</strong>{' '}
                 or <strong>Reject Non-Essential</strong> — both options are equally easy to select,
@@ -129,7 +129,7 @@ function CookiePolicyPage() {
             </div>
 
             <div>
-              <h2 className="text-lg font-bold text-slate-900">
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">
                 6. Blocking or Deleting Cookies via Your Browser
               </h2>
               <p className="mt-2">
@@ -162,7 +162,7 @@ function CookiePolicyPage() {
             </div>
 
             <div>
-              <h2 className="text-lg font-bold text-slate-900">7. Updates to This Policy</h2>
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">7. Updates to This Policy</h2>
               <p className="mt-2">
                 We may update this Cookie Policy as the Site's use of cookies and local storage
                 changes. Material changes — such as adding an analytics or advertising cookie —
@@ -172,7 +172,7 @@ function CookiePolicyPage() {
             </div>
 
             <div>
-              <h2 className="text-lg font-bold text-slate-900">8. Contact Us</h2>
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">8. Contact Us</h2>
               <p className="mt-2">
                 Questions about this Cookie Policy can be sent via our{' '}
                 <Link to="/contact" className="font-semibold text-emerald-600 hover:underline">

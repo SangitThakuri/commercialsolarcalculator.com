@@ -8,7 +8,7 @@ function StatTile({ label, value, format = (v) => v, highlight = false }) {
       className={`rounded-xl p-4 transition-all duration-300 hover:-translate-y-0.5 ${
         highlight
           ? 'bg-gradient-to-br from-emerald-600 to-emerald-700 shadow-lg shadow-emerald-900/30'
-          : 'bg-slate-900 hover:shadow-lg hover:shadow-slate-900/30'
+          : 'bg-slate-900 hover:shadow-lg hover:shadow-slate-900/30 dark:bg-slate-950'
       }`}
     >
       <p className={`text-xs font-medium uppercase tracking-wide ${highlight ? 'text-emerald-100' : 'text-slate-400'}`}>

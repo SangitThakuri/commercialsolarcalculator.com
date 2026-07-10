@@ -55,10 +55,10 @@ function TaxCreditCalculatorPage() {
     >
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-start">
         <section
-          className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8 lg:col-span-4"
+          className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8 lg:col-span-4"
           aria-label="Tax credit calculator inputs"
         >
-          <h2 className="text-lg font-semibold text-slate-900">Your Inputs</h2>
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Your Inputs</h2>
           <div className="mt-6 flex flex-col gap-6">
             <SliderNumberField
               id="tax-gross-cost"
@@ -93,8 +93,8 @@ function TaxCreditCalculatorPage() {
         </section>
 
         <div className="flex flex-col gap-6 lg:col-span-8">
-          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
-            <h2 className="text-lg font-semibold text-slate-900">Your Tax Benefit</h2>
+          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8">
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Your Tax Benefit</h2>
             <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
               <StatTile label="Section 48E ITC (30%)" value={itcAmount} format={(v) => currencyFormatter.format(v)} />
               <StatTile label="Depreciable Basis" value={depreciableBasis} format={(v) => currencyFormatter.format(v)} />
@@ -118,18 +118,18 @@ function TaxCreditCalculatorPage() {
             ]}
           />
 
-          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
-            <h2 className="text-lg font-semibold text-slate-900">When You Realize Each Benefit</h2>
+          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8">
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-white">When You Realize Each Benefit</h2>
             <div className="mt-6">
               <TaxBenefitTimeline itcAmount={itcAmount} macrsTimeline={macrsTimeline} />
             </div>
           </section>
 
-          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
-            <h2 className="text-xl font-bold text-slate-900">
+          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">
               Stacking the ITC and MACRS Depreciation
             </h2>
-            <div className="mt-4 space-y-4 text-sm leading-relaxed text-slate-600">
+            <div className="mt-4 space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
               <p>
                 Commercial solar is one of the few asset classes where two major federal tax
                 benefits stack on the same system: the Section 48E Investment Tax Credit (30% of

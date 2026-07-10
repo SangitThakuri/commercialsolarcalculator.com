@@ -62,15 +62,15 @@ function SidebarNav({ isOpen, onClose }) {
         aria-label={isDesktop ? undefined : 'All calculators navigation'}
         aria-hidden={!isVisible}
         tabIndex={-1}
-        className={`fixed inset-y-0 left-0 z-50 flex w-[85vw] max-w-xs flex-col bg-slate-900 shadow-2xl transition-transform duration-300 ease-out focus:outline-none lg:sticky lg:top-0 lg:z-0 lg:h-screen lg:w-72 lg:max-w-none lg:flex-shrink-0 lg:translate-x-0 lg:border-r lg:border-slate-800 lg:shadow-none ${
+        className={`fixed inset-y-0 left-0 z-50 flex w-[85vw] max-w-xs flex-col bg-white shadow-2xl transition-transform duration-300 ease-out focus:outline-none dark:bg-slate-900 lg:sticky lg:top-0 lg:z-0 lg:h-screen lg:w-72 lg:max-w-none lg:flex-shrink-0 lg:translate-x-0 lg:border-r lg:border-slate-200 lg:shadow-none dark:lg:border-slate-800 ${
           isOpen ? 'translate-x-0' : '-translate-x-full pointer-events-none lg:pointer-events-auto'
         }`}
       >
-        <div className="flex items-center justify-between border-b border-slate-800 px-5 py-4">
+        <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4 dark:border-slate-800">
           <Link
             to="/"
             onClick={onClose}
-            className="flex items-center gap-2 text-sm font-semibold text-white"
+            className="flex items-center gap-2 text-sm font-semibold text-slate-900 dark:text-white"
           >
             <span aria-hidden="true">☀️</span>
             Commercial Solar Calculator
@@ -79,7 +79,7 @@ function SidebarNav({ isOpen, onClose }) {
             type="button"
             onClick={onClose}
             aria-label="Close navigation menu"
-            className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg text-slate-400 transition hover:bg-slate-800 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40 lg:hidden"
+            className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white lg:hidden"
           >
             <X className="h-5 w-5" aria-hidden="true" />
           </button>
@@ -96,23 +96,27 @@ function SidebarNav({ isOpen, onClose }) {
               className={`mb-5 flex items-start gap-3 rounded-xl border p-3 transition ${
                 location.pathname === featured.path
                   ? 'border-emerald-500/40 bg-emerald-500/10'
-                  : 'border-slate-800 bg-slate-800/50 hover:border-slate-700 hover:bg-slate-800'
+                  : 'border-slate-200 bg-slate-50 hover:border-slate-300 hover:bg-slate-100 dark:border-slate-800 dark:bg-slate-800/50 dark:hover:border-slate-700 dark:hover:bg-slate-800'
               }`}
             >
               <featured.icon
-                className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-400"
+                className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600 dark:text-emerald-400"
                 aria-hidden="true"
               />
               <span>
-                <span className="block text-sm font-semibold text-white">{featured.label}</span>
-                <span className="mt-0.5 block text-xs text-slate-500">{featured.subtitle}</span>
+                <span className="block text-sm font-semibold text-slate-900 dark:text-white">
+                  {featured.label}
+                </span>
+                <span className="mt-0.5 block text-xs text-slate-500 dark:text-slate-500">
+                  {featured.subtitle}
+                </span>
               </span>
             </Link>
           )}
 
           {groups.map(({ category, items }) => (
             <div key={category} className="mb-5">
-              <p className="mb-1.5 px-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+              <p className="mb-1.5 px-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-500">
                 {category}
               </p>
               <div className="flex flex-col gap-0.5">
@@ -127,13 +131,13 @@ function SidebarNav({ isOpen, onClose }) {
                       onClick={onClose}
                       className={`flex items-start gap-3 rounded-lg px-2 py-2 transition ${
                         isActive
-                          ? 'bg-emerald-500/10 text-emerald-400'
-                          : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'
+                          ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400'
+                          : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800/70 dark:hover:text-white'
                       }`}
                     >
                       <Icon
                         className={`mt-0.5 h-5 w-5 flex-shrink-0 ${
-                          isActive ? 'text-emerald-400' : 'text-slate-500'
+                          isActive ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-400 dark:text-slate-500'
                         }`}
                         aria-hidden="true"
                       />
@@ -141,7 +145,7 @@ function SidebarNav({ isOpen, onClose }) {
                         <span className="block text-sm font-medium leading-tight">
                           {item.label}
                         </span>
-                        <span className="mt-0.5 block text-xs leading-snug text-slate-500">
+                        <span className="mt-0.5 block text-xs leading-snug text-slate-500 dark:text-slate-500">
                           {item.subtitle}
                         </span>
                       </span>

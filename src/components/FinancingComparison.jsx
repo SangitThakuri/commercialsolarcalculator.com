@@ -13,16 +13,22 @@ function Stat({ label, value, tone = 'neutral' }) {
     <div
       className={`rounded-xl p-4 ${
         tone === 'positive'
-          ? 'bg-emerald-50 ring-1 ring-emerald-200'
+          ? 'bg-emerald-50 ring-1 ring-emerald-200 dark:bg-emerald-900/20 dark:ring-emerald-800'
           : tone === 'negative'
-            ? 'bg-amber-50 ring-1 ring-amber-200'
-            : 'bg-slate-50 ring-1 ring-slate-200'
+            ? 'bg-amber-50 ring-1 ring-amber-200 dark:bg-amber-900/20 dark:ring-amber-800'
+            : 'bg-slate-50 ring-1 ring-slate-200 dark:bg-slate-900/40 dark:ring-slate-700'
       }`}
     >
-      <p className="text-xs font-medium uppercase tracking-wide text-slate-500">{label}</p>
+      <p className="text-xs font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">
+        {label}
+      </p>
       <p
         className={`mt-1 text-lg font-bold tabular-nums sm:text-xl ${
-          tone === 'positive' ? 'text-emerald-700' : tone === 'negative' ? 'text-amber-700' : 'text-slate-900'
+          tone === 'positive'
+            ? 'text-emerald-700 dark:text-emerald-400'
+            : tone === 'negative'
+              ? 'text-amber-700 dark:text-amber-400'
+              : 'text-slate-900 dark:text-white'
         }`}
       >
         {value}
@@ -45,19 +51,27 @@ function FinancingComparison({ netCapital, annualSavings }) {
 
   return (
     <section
-      className="animate-fade-in-up rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8"
+      className="animate-fade-in-up rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8"
       aria-label="Compare financing options"
     >
-      <h2 className="text-lg font-semibold text-slate-900">Compare Financing Options</h2>
+      <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
+        Compare Financing Options
+      </h2>
 
-      <div className="mt-4 inline-flex rounded-lg bg-slate-100 p-1" role="tablist" aria-label="Financing method">
+      <div
+        className="mt-4 inline-flex rounded-lg bg-slate-100 p-1 dark:bg-slate-900/60"
+        role="tablist"
+        aria-label="Financing method"
+      >
         <button
           type="button"
           role="tab"
           aria-selected={mode === 'cash'}
           onClick={() => setMode('cash')}
           className={`rounded-md px-4 py-1.5 text-sm font-semibold transition ${
-            mode === 'cash' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+            mode === 'cash'
+              ? 'bg-white text-slate-900 shadow-sm dark:bg-slate-700 dark:text-white'
+              : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'
           }`}
         >
           Cash Purchase
@@ -68,7 +82,9 @@ function FinancingComparison({ netCapital, annualSavings }) {
           aria-selected={mode === 'loan'}
           onClick={() => setMode('loan')}
           className={`rounded-md px-4 py-1.5 text-sm font-semibold transition ${
-            mode === 'loan' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+            mode === 'loan'
+              ? 'bg-white text-slate-900 shadow-sm dark:bg-slate-700 dark:text-white'
+              : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'
           }`}
         >
           Solar Loan
@@ -76,7 +92,7 @@ function FinancingComparison({ netCapital, annualSavings }) {
       </div>
 
       {mode === 'cash' ? (
-        <p className="mt-5 text-sm leading-relaxed text-slate-600">
+        <p className="mt-5 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
           Paying the {currencyFormatter.format(netCapital)} Net Capital Required entirely in cash
           avoids financing costs altogether — your payback timeline above is driven purely by
           utility savings against that upfront amount, with no interest to offset.
@@ -122,7 +138,7 @@ function FinancingComparison({ netCapital, annualSavings }) {
               tone={loan.netMonthlyCashFlow >= 0 ? 'positive' : 'negative'}
             />
           </div>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-400 dark:text-slate-500">
             Illustrative amortization only, financing the full Net Capital Required — your actual
             rate, term, fees, and down payment will depend on your lender.
           </p>

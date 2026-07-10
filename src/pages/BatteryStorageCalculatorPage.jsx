@@ -42,10 +42,10 @@ function BatteryStorageCalculatorPage() {
     >
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-start">
         <section
-          className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8 lg:col-span-5"
+          className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8 lg:col-span-5"
           aria-label="Battery storage calculator inputs"
         >
-          <h2 className="text-lg font-semibold text-slate-900">Your Inputs</h2>
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Your Inputs</h2>
           <div className="mt-6 flex flex-col gap-6">
             <SliderNumberField
               id="battery-load"
@@ -79,8 +79,8 @@ function BatteryStorageCalculatorPage() {
         </section>
 
         <div className="flex flex-col gap-6 lg:col-span-7">
-          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
-            <h2 className="text-lg font-semibold text-slate-900">Estimated Battery Requirement</h2>
+          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8">
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Estimated Battery Requirement</h2>
             <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
               <StatTile
                 label="Usable Battery Capacity"
@@ -106,11 +106,11 @@ function BatteryStorageCalculatorPage() {
             ]}
           />
 
-          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
-            <h2 className="text-xl font-bold text-slate-900">
+          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">
               Battery Storage: A Different Problem Than Solar Generation
             </h2>
-            <div className="mt-4 space-y-4 text-sm leading-relaxed text-slate-600">
+            <div className="mt-4 space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
               <p>
                 Solar panels generate power only while the sun is shining, and — critically — most
                 grid-tied commercial solar systems automatically shut off during a utility outage

@@ -49,10 +49,10 @@ function NpvIrrCalculatorPage() {
     >
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-start">
         <section
-          className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8 lg:col-span-4"
+          className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8 lg:col-span-4"
           aria-label="NPV and IRR calculator inputs"
         >
-          <h2 className="text-lg font-semibold text-slate-900">Your Inputs</h2>
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Your Inputs</h2>
           <div className="mt-6 flex flex-col gap-6">
             <SliderNumberField
               id="npv-bill"
@@ -102,8 +102,8 @@ function NpvIrrCalculatorPage() {
         </section>
 
         <div className="flex flex-col gap-6 lg:col-span-8">
-          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
-            <h2 className="text-lg font-semibold text-slate-900">Discounted Cash Flow Summary</h2>
+          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8">
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Discounted Cash Flow Summary</h2>
             <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
               <StatTile
                 label="Net Present Value (NPV)"
@@ -135,16 +135,16 @@ function NpvIrrCalculatorPage() {
             ]}
           />
 
-          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
-            <h2 className="text-lg font-semibold text-slate-900">Discounted Cumulative Cash Flow</h2>
+          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8">
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Discounted Cumulative Cash Flow</h2>
             <div className="mt-6">
               <CashFlowChart projection={discountedProjection} crossoverYear={discountedCrossoverYear} />
             </div>
           </section>
 
-          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
-            <h2 className="text-xl font-bold text-slate-900">Why NPV and IRR Matter More Than Simple ROI</h2>
-            <div className="mt-4 space-y-4 text-sm leading-relaxed text-slate-600">
+          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Why NPV and IRR Matter More Than Simple ROI</h2>
+            <div className="mt-4 space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
               <p>
                 Simple ROI and payback period ignore the time value of money — a dollar saved in
                 year 20 is treated the same as a dollar saved next year. Net Present Value (NPV)

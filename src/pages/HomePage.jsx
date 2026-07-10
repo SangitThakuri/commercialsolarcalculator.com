@@ -160,40 +160,40 @@ function HomePage() {
           <ReportActions title="Commercial Solar Calculator — ROI Summary" lines={reportLines} />
 
           <section
-            className="animate-fade-in-up rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8 print:shadow-none print:ring-0"
+            className="animate-fade-in-up rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8 print:shadow-none print:ring-0"
             aria-label="25 year cumulative cash flow projection"
           >
-            <h2 className="text-lg font-semibold text-slate-900">25-Year Cumulative Cash Flow</h2>
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-white">25-Year Cumulative Cash Flow</h2>
             <div className="mt-6">
               <CashFlowChart projection={projection} crossoverYear={crossoverYear} />
             </div>
           </section>
 
           <section
-            className="animate-fade-in-up rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8 print:shadow-none print:ring-0"
+            className="animate-fade-in-up rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8 print:shadow-none print:ring-0"
             aria-label="Annual utility savings"
           >
-            <h2 className="text-lg font-semibold text-slate-900">Annual Utility Savings</h2>
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Annual Utility Savings</h2>
             <div className="mt-6">
               <SavingsChart series={savingsSeries} />
             </div>
           </section>
 
           <section
-            className="animate-fade-in-up rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8 print:shadow-none print:ring-0"
+            className="animate-fade-in-up rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8 print:shadow-none print:ring-0"
             aria-label="Estimated annual energy production"
           >
-            <h2 className="text-lg font-semibold text-slate-900">Estimated Energy Production</h2>
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Estimated Energy Production</h2>
             <div className="mt-6">
               <EnergyProductionChart production={energyProduction} />
             </div>
           </section>
 
           <section
-            className="animate-fade-in-up rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8 print:shadow-none print:ring-0"
+            className="animate-fade-in-up rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8 print:shadow-none print:ring-0"
             aria-label="Tax benefit timeline"
           >
-            <h2 className="text-lg font-semibold text-slate-900">Tax Benefit Timeline</h2>
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Tax Benefit Timeline</h2>
             <div className="mt-6">
               <TaxBenefitTimeline itcAmount={metrics.itcAmount} macrsTimeline={macrsTimeline} />
             </div>

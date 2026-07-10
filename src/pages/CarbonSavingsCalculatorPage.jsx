@@ -36,10 +36,10 @@ function CarbonSavingsCalculatorPage() {
     >
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-start">
         <section
-          className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8 lg:col-span-4"
+          className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8 lg:col-span-4"
           aria-label="Carbon savings calculator inputs"
         >
-          <h2 className="text-lg font-semibold text-slate-900">Your Input</h2>
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Your Input</h2>
           <div className="mt-6">
             <SliderNumberField
               id="carbon-bill"
@@ -60,8 +60,8 @@ function CarbonSavingsCalculatorPage() {
         </section>
 
         <div className="flex flex-col gap-6 lg:col-span-8">
-          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
-            <h2 className="text-lg font-semibold text-slate-900">Estimated Carbon Impact</h2>
+          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8">
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Estimated Carbon Impact</h2>
             <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
               <StatTile
                 label="Annual CO2 Avoided"
@@ -97,9 +97,9 @@ function CarbonSavingsCalculatorPage() {
             ]}
           />
 
-          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
-            <h2 className="text-xl font-bold text-slate-900">Methodology &amp; ESG Reporting</h2>
-            <div className="mt-4 space-y-4 text-sm leading-relaxed text-slate-600">
+          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Methodology &amp; ESG Reporting</h2>
+            <div className="mt-4 space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
               <p>
                 This estimate multiplies your system&apos;s estimated annual production by the
                 EPA eGRID national average grid emissions factor of 0.855 lbs CO2 per kWh — the

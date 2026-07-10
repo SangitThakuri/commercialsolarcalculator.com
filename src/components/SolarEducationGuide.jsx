@@ -50,12 +50,12 @@ function SolarEducationGuide() {
   return (
     <section
       aria-label="Commercial solar education guide"
-      className="animate-fade-in-up rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8 print:shadow-none print:ring-0"
+      className="animate-fade-in-up rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 print:shadow-none print:ring-0 sm:p-8"
     >
-      <h2 className="text-xl font-bold text-slate-900 sm:text-2xl">
+      <h2 className="text-xl font-bold text-slate-900 dark:text-white sm:text-2xl">
         Commercial Solar Guide: Everything Businesses Need to Know
       </h2>
-      <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-600">
+      <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-600 dark:text-slate-300">
         A deeper look at the mechanics behind the numbers above — how commercial solar ROI,
         federal tax incentives, depreciation, and system sizing actually work.
       </p>
@@ -63,8 +63,12 @@ function SolarEducationGuide() {
       <div className="mt-6 grid grid-cols-1 gap-x-10 gap-y-8 lg:grid-cols-2">
         {TOPICS.map((topic) => (
           <div key={topic.id}>
-            <h3 className="text-base font-semibold text-slate-900">{topic.heading}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-slate-600">{topic.body}</p>
+            <h3 className="text-base font-semibold text-slate-900 dark:text-white">
+              {topic.heading}
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+              {topic.body}
+            </p>
           </div>
         ))}
       </div>

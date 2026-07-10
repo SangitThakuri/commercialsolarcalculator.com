@@ -20,8 +20,8 @@ function CheckIcon() {
 
 function TrustBar() {
   return (
-    <div className="border-b border-slate-800 bg-slate-950/60">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-3 text-xs text-slate-400 sm:px-8">
+    <div className="border-b border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-950/60">
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-3 text-xs text-slate-600 dark:text-slate-400 sm:px-8">
         {SIGNALS.map((signal) => (
           <span key={signal} className="flex items-center gap-1.5">
             <CheckIcon />

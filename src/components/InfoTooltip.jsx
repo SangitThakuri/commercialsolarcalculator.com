@@ -33,7 +33,7 @@ function InfoTooltip({ id, text }) {
         onBlur={() => setOpen(false)}
         aria-describedby={open ? id : undefined}
         aria-label="More information"
-        className="flex h-4 w-4 items-center justify-center rounded-full border border-slate-300 text-[10px] font-bold leading-none text-slate-400 transition hover:border-emerald-400 hover:text-emerald-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40"
+        className="flex h-4 w-4 items-center justify-center rounded-full border border-slate-300 text-[10px] font-bold leading-none text-slate-400 transition hover:border-emerald-400 hover:text-emerald-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40 dark:border-slate-600 dark:text-slate-500 dark:hover:border-emerald-400 dark:hover:text-emerald-400"
       >
         i
       </button>

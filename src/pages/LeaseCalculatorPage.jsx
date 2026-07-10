@@ -47,10 +47,10 @@ function LeaseCalculatorPage() {
     >
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-start">
         <section
-          className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8 lg:col-span-4"
+          className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8 lg:col-span-4"
           aria-label="Lease calculator inputs"
         >
-          <h2 className="text-lg font-semibold text-slate-900">Your Inputs</h2>
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Your Inputs</h2>
           <div className="mt-6 flex flex-col gap-6">
             <SliderNumberField
               id="lease-bill"
@@ -85,11 +85,11 @@ function LeaseCalculatorPage() {
         </section>
 
         <div className="flex flex-col gap-6 lg:col-span-8">
-          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
-            <h2 className="text-lg font-semibold text-slate-900">Lease / PPA vs. Ownership</h2>
+          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8">
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Lease / PPA vs. Ownership</h2>
             <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div className="rounded-xl border border-slate-200 p-4">
-                <p className="text-sm font-semibold text-slate-900">Solar Lease / PPA</p>
+              <div className="rounded-xl border border-slate-200 dark:border-slate-700 p-4">
+                <p className="text-sm font-semibold text-slate-900 dark:text-white">Solar Lease / PPA</p>
                 <div className="mt-3 flex flex-col gap-3">
                   <StatTile
                     label="Monthly Lease Payment"
@@ -103,10 +103,10 @@ function LeaseCalculatorPage() {
                     highlight
                   />
                 </div>
-                <p className="mt-3 text-xs text-slate-500">$0 upfront. No ITC or depreciation — the third-party owner keeps those.</p>
+                <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">$0 upfront. No ITC or depreciation — the third-party owner keeps those.</p>
               </div>
-              <div className="rounded-xl border border-slate-200 p-4">
-                <p className="text-sm font-semibold text-slate-900">Cash Ownership</p>
+              <div className="rounded-xl border border-slate-200 dark:border-slate-700 p-4">
+                <p className="text-sm font-semibold text-slate-900 dark:text-white">Cash Ownership</p>
                 <div className="mt-3 flex flex-col gap-3">
                   <StatTile
                     label="Net Capital Required"
@@ -120,7 +120,7 @@ function LeaseCalculatorPage() {
                     highlight
                   />
                 </div>
-                <p className="mt-3 text-xs text-slate-500">
+                <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">
                   {currencyFormatter.format(metrics.netCapital)} upfront. You keep the ITC, MACRS
                   depreciation, and 100% of long-run savings.
                 </p>
@@ -138,9 +138,9 @@ function LeaseCalculatorPage() {
             ]}
           />
 
-          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
-            <h2 className="text-xl font-bold text-slate-900">How Solar Leases and PPAs Work</h2>
-            <div className="mt-4 space-y-4 text-sm leading-relaxed text-slate-600">
+          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">How Solar Leases and PPAs Work</h2>
+            <div className="mt-4 space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
               <p>
                 In a solar lease or Power Purchase Agreement (PPA), a third party owns, installs,
                 and maintains the system on your roof or property. You pay either a fixed monthly

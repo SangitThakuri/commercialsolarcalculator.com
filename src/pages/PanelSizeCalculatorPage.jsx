@@ -38,10 +38,10 @@ function PanelSizeCalculatorPage() {
     >
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-start">
         <section
-          className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8 lg:col-span-4"
+          className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8 lg:col-span-4"
           aria-label="Panel size calculator inputs"
         >
-          <h2 className="text-lg font-semibold text-slate-900">Your Input</h2>
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Your Input</h2>
           <div className="mt-6">
             <SliderNumberField
               id="size-bill"
@@ -62,8 +62,8 @@ function PanelSizeCalculatorPage() {
         </section>
 
         <div className="flex flex-col gap-6 lg:col-span-8">
-          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
-            <h2 className="text-lg font-semibold text-slate-900">Estimated System Size</h2>
+          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8">
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Estimated System Size</h2>
             <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
               <StatTile label="System Size" value={sizeDetails.systemSizeKw} format={(v) => `${Math.round(v)} kW`} highlight />
               <StatTile label="Panel Count" value={sizeDetails.panelCount} format={(v) => `${Math.round(v)} panels`} />
@@ -86,16 +86,16 @@ function PanelSizeCalculatorPage() {
             ]}
           />
 
-          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
-            <h2 className="text-lg font-semibold text-slate-900">25-Year Production Estimate</h2>
+          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8">
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-white">25-Year Production Estimate</h2>
             <div className="mt-6">
               <EnergyProductionChart production={production} />
             </div>
           </section>
 
-          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8">
-            <h2 className="text-xl font-bold text-slate-900">How This Sizing Estimate Works</h2>
-            <div className="mt-4 space-y-4 text-sm leading-relaxed text-slate-600">
+          <section className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 sm:p-8">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">How This Sizing Estimate Works</h2>
+            <div className="mt-4 space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
               <p>
                 Your monthly bill is first converted to estimated monthly kWh usage using a
                 blended $0.13/kWh national average commercial electricity rate. That usage is then
