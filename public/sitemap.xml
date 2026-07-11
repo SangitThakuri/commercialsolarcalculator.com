@@ -101,6 +101,46 @@
     <priority>0.4</priority>
   </url>
   <url>
+    <loc>https://www.commercialsolarcalculator.com/calculators</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.commercialsolarcalculator.com/solar-guides</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.commercialsolarcalculator.com/faq</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.commercialsolarcalculator.com/methodology</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.commercialsolarcalculator.com/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.commercialsolarcalculator.com/sitemap</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.commercialsolarcalculator.com/terms-of-service</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.commercialsolarcalculator.com/disclaimer</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
     <loc>https://www.commercialsolarcalculator.com/blog</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

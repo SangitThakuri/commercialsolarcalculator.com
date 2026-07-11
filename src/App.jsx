@@ -24,6 +24,14 @@ const CookiePolicyPage = lazy(() => import('./pages/CookiePolicyPage.jsx'))
 const ContactPage = lazy(() => import('./pages/ContactPage.jsx'))
 const BlogIndexPage = lazy(() => import('./pages/BlogIndexPage.jsx'))
 const BlogArticlePage = lazy(() => import('./pages/BlogArticlePage.jsx'))
+const FaqPage = lazy(() => import('./pages/FaqPage.jsx'))
+const MethodologyPage = lazy(() => import('./pages/MethodologyPage.jsx'))
+const TermsPage = lazy(() => import('./pages/TermsPage.jsx'))
+const DisclaimerPage = lazy(() => import('./pages/DisclaimerPage.jsx'))
+const AboutPage = lazy(() => import('./pages/AboutPage.jsx'))
+const CalculatorsIndexPage = lazy(() => import('./pages/CalculatorsIndexPage.jsx'))
+const SolarGuidesPage = lazy(() => import('./pages/SolarGuidesPage.jsx'))
+const SitemapPage = lazy(() => import('./pages/SitemapPage.jsx'))
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -78,6 +86,14 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/blog" element={<BlogIndexPage />} />
           <Route path="/blog/:slug" element={<BlogArticlePage />} />
+          <Route path="/faq" element={<FaqPage />} />
+          <Route path="/methodology" element={<MethodologyPage />} />
+          <Route path="/terms-of-service" element={<TermsPage />} />
+          <Route path="/disclaimer" element={<DisclaimerPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/calculators" element={<CalculatorsIndexPage />} />
+          <Route path="/solar-guides" element={<SolarGuidesPage />} />
+          <Route path="/sitemap" element={<SitemapPage />} />
         </Routes>
       </Suspense>
       <CookieConsentBanner />
