@@ -1,6 +1,7 @@
-import { lazy, Suspense, useEffect } from 'react'
+import { lazy, Suspense, useEffect, useRef } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import CookieConsentBanner from './components/CookieConsentBanner.jsx'
+import { trackPageView } from './utils/analytics.js'
 
 const HomePage = lazy(() => import('./pages/HomePage.jsx'))
 const RoiCalculatorPage = lazy(() => import('./pages/RoiCalculatorPage.jsx'))
@@ -35,9 +36,19 @@ const SitemapPage = lazy(() => import('./pages/SitemapPage.jsx'))
 
 function ScrollToTop() {
   const { pathname } = useLocation()
+  const isFirstRender = useRef(true)
 
   useEffect(() => {
     window.scrollTo(0, 0)
+
+    // Skip the initial mount — if analytics is already loaded (returning visitor who
+    // previously accepted), gtag('config', ...) inside loadGoogleAnalytics() already sends
+    // the first page_view. This effect only tracks subsequent client-side navigations.
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
+    trackPageView(pathname)
   }, [pathname])
 
   return null

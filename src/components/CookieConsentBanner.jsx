@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { loadGoogleAnalytics } from '../utils/analytics.js'
 
 export const COOKIE_CONSENT_KEY = 'cookie-consent-preference'
 
@@ -21,7 +22,9 @@ function CookieConsentBanner() {
 
   useEffect(() => {
     // Re-check on mount in case another tab already recorded a choice.
-    setChoice(getCookieConsent())
+    const stored = getCookieConsent()
+    setChoice(stored)
+    if (stored === 'accepted') loadGoogleAnalytics()
   }, [])
 
   if (choice) return null
@@ -33,6 +36,7 @@ function CookieConsentBanner() {
       // Storage unavailable (private browsing, etc.) — the banner will simply reappear
       // next visit, which is an acceptable fallback rather than blocking the user.
     }
+    if (value === 'accepted') loadGoogleAnalytics()
     setChoice(value)
   }
 

@@ -6,7 +6,7 @@ const TITLE = 'Cookie Policy'
 const DESCRIPTION =
   'What cookies and local storage Commercial Solar Calculator uses, why, and how to manage or block them in your browser.'
 const PATH = '/cookie-policy'
-const LAST_UPDATED = 'July 10, 2026'
+const LAST_UPDATED = 'July 22, 2026'
 
 function CookiePolicyPage() {
   usePageMeta({
@@ -96,11 +96,43 @@ function CookiePolicyPage() {
                 3. Analytics Cookies (Non-Essential)
               </h2>
               <p className="mt-2">
-                <strong>As of the date at the top of this page, this Site does not load Google
-                Analytics or any other analytics cookie.</strong> If we introduce an analytics
-                service in the future, it will only load after you click &quot;Accept All&quot; on
-                our cookie banner, and this section will be updated to name the specific service
-                and list its cookies before that happens.
+                We use <strong>Google Analytics (GA4)</strong> to understand aggregate traffic —
+                which pages are visited, how many people arrive from search versus a direct link,
+                and similar site-usage patterns. It is loaded only after you click{' '}
+                &quot;Accept All&quot; on our cookie banner; if you click &quot;Reject
+                Non-Essential&quot; or make no choice, Google Analytics never loads and sets no
+                cookies.
+              </p>
+              <div className="mt-3 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+                <table className="w-full min-w-[480px] text-left text-xs">
+                  <thead className="bg-slate-50 dark:bg-slate-900/60 text-slate-500 dark:text-slate-400">
+                    <tr>
+                      <th className="px-3 py-2 font-semibold">Name</th>
+                      <th className="px-3 py-2 font-semibold">Purpose</th>
+                      <th className="px-3 py-2 font-semibold">Duration</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
+                    <tr>
+                      <td className="px-3 py-2 font-mono text-[11px]">_ga</td>
+                      <td className="px-3 py-2">Distinguishes unique visitors for Google Analytics.</td>
+                      <td className="px-3 py-2">2 years</td>
+                    </tr>
+                    <tr>
+                      <td className="px-3 py-2 font-mono text-[11px]">_ga_*</td>
+                      <td className="px-3 py-2">
+                        Persists Google Analytics session state (GA4 property-specific cookie).
+                      </td>
+                      <td className="px-3 py-2">2 years</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p className="mt-3">
+                Google Analytics data is processed by Google under its own privacy terms; we do
+                not control what Google does with it beyond the reporting we configure. We do not
+                use this data to identify you individually, and we do not combine it with any
+                calculator input you enter (those never leave your browser — see Section 2).
               </p>
             </div>
 

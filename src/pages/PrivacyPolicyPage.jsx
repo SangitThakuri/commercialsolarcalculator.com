@@ -6,7 +6,7 @@ const TITLE = 'Privacy Policy'
 const DESCRIPTION =
   'How Commercial Solar Calculator collects, uses, stores, and protects your personal data, and your rights under GDPR and CCPA.'
 const PATH = '/privacy-policy'
-const LAST_UPDATED = 'July 10, 2026'
+const LAST_UPDATED = 'July 22, 2026'
 
 function PrivacyPolicyPage() {
   usePageMeta({
@@ -65,6 +65,18 @@ function PrivacyPolicyPage() {
                     Cookie Policy
                   </Link>{' '}
                   for details.
+                </li>
+                <li>
+                  <strong>Analytics data (only if you click &quot;Accept All&quot;).</strong> If
+                  you accept non-essential cookies, we load Google Analytics (GA4), which
+                  collects standard usage data — pages visited, referring source, device/browser
+                  type, and approximate location derived from IP address. This data is aggregated
+                  and is not used to identify you individually. It never loads if you reject
+                  non-essential cookies or make no choice. See our{' '}
+                  <Link to="/cookie-policy" className="font-semibold text-emerald-600 hover:underline">
+                    Cookie Policy
+                  </Link>{' '}
+                  for the specific cookies involved.
                 </li>
                 <li>
                   <strong>Quote-request data (if you use a &quot;Request a Quote&quot; feature).</strong>{' '}
