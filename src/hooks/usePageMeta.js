@@ -34,9 +34,12 @@ function upsertCanonical(href) {
 
 /**
  * Client-side per-route document head manager for this SPA. Google renders JS before
- * indexing, so this keeps title/description/canonical/schema accurate per page. It does
- * NOT help non-JS consumers (social link unfurlers, some legacy crawlers) — those will see
- * index.html's static homepage tags until the route's JS runs.
+ * indexing, so this keeps title/description/canonical/schema accurate per page. A postbuild
+ * prerender step (scripts/prerender.mjs) also bakes each route's tags/schema statically into
+ * its own dist/<path>/index.html, for consumers that never run JS at all (social link
+ * unfurlers, some legacy crawlers) — this hook takes over from there for client-side
+ * navigation between routes, replacing whichever page's JSON-LD script is currently present
+ * (prerendered or previously injected) rather than assuming none exists.
  */
 export function usePageMeta({ title, description, path = '/', jsonLd }) {
   useEffect(() => {
@@ -50,6 +53,8 @@ export function usePageMeta({ title, description, path = '/', jsonLd }) {
     upsertMetaByProperty('og:url', url)
     upsertMetaByName('twitter:title', title)
     upsertMetaByName('twitter:description', description)
+
+    document.getElementById('page-jsonld')?.remove()
 
     let script
     if (jsonLd) {

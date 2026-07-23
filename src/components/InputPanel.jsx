@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import InfoTooltip from './InfoTooltip.jsx'
 import { US_STATES } from '../data/usStates.js'
+import { getDefaultTaxRateForState } from '../data/stateCorporateTaxRates.js'
 
-function StateDropdown() {
-  const [selectedState, setSelectedState] = useState('California')
-
+function StateDropdown({ selectedState, onStateChange }) {
   return (
     <div>
       <div className="flex items-center gap-1.5">
@@ -13,14 +12,14 @@ function StateDropdown() {
         </label>
         <InfoTooltip
           id="property-state-tooltip"
-          text="For your reference only — this does not automatically change the tax rate below. Set your state's corporate tax rate separately using the slider."
+          text="Sets the tax rate slider below to your state's approximate top marginal corporate tax rate. It's a starting point, not tax advice — adjust the slider if you know your exact rate."
         />
       </div>
       <div className="relative mt-2">
         <select
           id="property-state"
           value={selectedState}
-          onChange={(event) => setSelectedState(event.target.value)}
+          onChange={(event) => onStateChange(event.target.value)}
           aria-label="Property location state"
           className="w-full appearance-none rounded-lg border border-slate-200 bg-slate-50 py-2.5 pl-3 pr-9 text-sm font-medium text-slate-700 transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
         >
@@ -192,6 +191,13 @@ export function SliderNumberField({
 }
 
 function InputPanel({ monthlyBill, setMonthlyBill, stateTaxRate, setStateTaxRate }) {
+  const [selectedState, setSelectedState] = useState('California')
+
+  const handleStateChange = (state) => {
+    setSelectedState(state)
+    setStateTaxRate(getDefaultTaxRateForState(state))
+  }
+
   return (
     <section
       className="animate-fade-in-up rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 print:shadow-none print:ring-0 sm:p-8"
@@ -200,7 +206,7 @@ function InputPanel({ monthlyBill, setMonthlyBill, stateTaxRate, setStateTaxRate
       <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Your Business Inputs</h2>
 
       <div className="mt-6 flex flex-col gap-6">
-        <StateDropdown />
+        <StateDropdown selectedState={selectedState} onStateChange={handleStateChange} />
 
         <SliderNumberField
           id="monthly-bill"

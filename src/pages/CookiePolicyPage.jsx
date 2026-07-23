@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import SiteLayout from '../layouts/SiteLayout.jsx'
 import { usePageMeta } from '../hooks/usePageMeta.js'
+import { buildBreadcrumbJsonLd } from '../utils/seo.js'
 
 const TITLE = 'Cookie Policy'
 const DESCRIPTION =
@@ -13,6 +14,7 @@ function CookiePolicyPage() {
     title: `${TITLE} | Commercial Solar Calculator`,
     description: DESCRIPTION,
     path: PATH,
+    jsonLd: [buildBreadcrumbJsonLd(PATH, TITLE)],
   })
 
   return (

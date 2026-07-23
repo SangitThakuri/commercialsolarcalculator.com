@@ -19,6 +19,7 @@ import CtaBanner from '../components/CtaBanner.jsx'
 import ArticleCard from '../components/blog/ArticleCard.jsx'
 import { usePageMeta } from '../hooks/usePageMeta.js'
 import { BLOG_POSTS } from '../data/blogPosts.js'
+import { getDefaultTaxRateForState } from '../data/stateCorporateTaxRates.js'
 import {
   calculateSolarMetrics,
   generateCashFlowProjection,
@@ -110,7 +111,7 @@ function HomePage() {
   })
 
   const [monthlyBill, setMonthlyBill] = useState(5000)
-  const [stateTaxRate, setStateTaxRate] = useState(0.06)
+  const [stateTaxRate, setStateTaxRate] = useState(getDefaultTaxRateForState('California'))
 
   const metrics = useMemo(
     () => calculateSolarMetrics(monthlyBill, stateTaxRate),

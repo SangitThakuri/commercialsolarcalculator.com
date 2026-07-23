@@ -3,6 +3,7 @@ import SiteLayout from '../layouts/SiteLayout.jsx'
 import { usePageMeta } from '../hooks/usePageMeta.js'
 import { CALCULATOR_PAGES } from '../data/calculatorPages.js'
 import { BLOG_POSTS } from '../data/blogPosts.js'
+import { buildBreadcrumbJsonLd } from '../utils/seo.js'
 
 const TITLE = 'Sitemap'
 const DESCRIPTION = 'Every page on Commercial Solar Calculator, listed in one place.'
@@ -54,6 +55,7 @@ function SitemapPage() {
     title: `${TITLE} | Commercial Solar Calculator`,
     description: DESCRIPTION,
     path: PATH,
+    jsonLd: [buildBreadcrumbJsonLd(PATH, TITLE)],
   })
 
   const calculatorLinks = CALCULATOR_PAGES.map((page) => ({ path: page.path, label: page.label }))

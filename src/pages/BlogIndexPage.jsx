@@ -4,6 +4,7 @@ import ArticleCard from '../components/blog/ArticleCard.jsx'
 import BlogFilters from '../components/blog/BlogFilters.jsx'
 import { usePageMeta } from '../hooks/usePageMeta.js'
 import { BLOG_POSTS } from '../data/blogPosts.js'
+import { buildBreadcrumbJsonLd } from '../utils/seo.js'
 
 const TITLE = 'Commercial Solar Blog'
 const DESCRIPTION =
@@ -15,6 +16,7 @@ function BlogIndexPage() {
     title: `${TITLE} | Commercial Solar Calculator`,
     description: DESCRIPTION,
     path: PATH,
+    jsonLd: [buildBreadcrumbJsonLd(PATH, TITLE)],
   })
 
   const [activeCategory, setActiveCategory] = useState(null)

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import SiteLayout from '../layouts/SiteLayout.jsx'
 import { usePageMeta } from '../hooks/usePageMeta.js'
+import { buildBreadcrumbJsonLd } from '../utils/seo.js'
 
 const TITLE = 'Contact Us'
 const DESCRIPTION =
@@ -66,6 +67,7 @@ function ContactPage() {
     title: `${TITLE} | Commercial Solar Calculator`,
     description: DESCRIPTION,
     path: PATH,
+    jsonLd: [buildBreadcrumbJsonLd(PATH, TITLE)],
   })
 
   const [form, setForm] = useState(INITIAL_FORM)
