@@ -371,6 +371,215 @@ const RAW_POSTS = [
       },
     ],
   },
+  {
+    slug: 'commercial-solar-financing-explained',
+    title: 'Solar Financing Options for Businesses: Cash, Loan, or Lease',
+    excerpt: 'Owning and financing aren\'t the same decision. Here is who keeps the tax credit under each option.',
+    category: BLOG_CATEGORIES.FINANCIAL,
+    illustration: 'savings-chart',
+    publishDate: '2026-06-29',
+    relatedCalculatorPaths: [
+      '/solar-financing-calculator',
+      '/solar-loan-calculator',
+      '/solar-lease-calculator',
+    ],
+    relatedPostSlugs: ['how-commercial-solar-roi-is-calculated', 'federal-solar-tax-credits-explained'],
+    sections: [
+      {
+        paragraphs: [
+          "\"Should we pay cash or finance it?\" is usually the second question a business asks about solar, right after \"how much does it cost?\" The honest answer is that it's really two separate decisions stacked on top of each other: whether you own the system at all, and if you do, whether you pay for that ownership up front or over time. Getting those two decisions confused is where most financing comparisons go sideways.",
+        ],
+      },
+      {
+        heading: 'Cash purchase: slower up front, best total return',
+        paragraphs: [
+          "Paying cash means you keep 100% of the tax credit, 100% of the depreciation benefit, and 100% of the utility savings, with no interest cost eating into any of it. It's the highest total-return option by a meaningful margin, and it's why cash purchase is often the default recommendation for a business with the capital available and enough tax liability to actually use the credit and depreciation shield. The tradeoff is obvious: it ties up capital that could theoretically be deployed elsewhere, and it front-loads a large expense in year one instead of spreading it out.",
+        ],
+      },
+      {
+        heading: 'A solar loan: you still own it, you just spread out the cost',
+        paragraphs: [
+          "A solar loan is the middle path that confuses people the least once it's explained: you still own the system, which means you still claim the tax credit and depreciation yourself, but you're paying it off over 5-10 years instead of on day one. The math that matters here is simple — does your monthly loan payment stay below your monthly utility savings? If yes, you're cash-flow-positive from month one, which is a genuinely appealing pitch even before the tax benefits land. The cost is interest, which reduces your total return compared to cash, but for a business that would rather preserve capital for other uses, a loan often beats writing one large check.",
+        ],
+      },
+      {
+        heading: "A lease or PPA: someone else owns it, someone else keeps the credit",
+        paragraphs: [
+          "This is where the ownership question actually changes hands. Under a lease or a power purchase agreement (PPA), a third party owns the system, claims the tax credit and depreciation themselves, and sells you either a fixed monthly payment (lease) or the electricity it generates at a set rate (PPA), usually below your utility's rate. The appeal is zero money down and no ownership responsibility — maintenance and performance risk sit with the owner, not you. The tradeoff is that you're giving up the tax benefits to someone else in exchange for that simplicity, which is why leases and PPAs almost always produce a lower total 25-year financial benefit than owning the same system outright, even though they're easier to say yes to.",
+        ],
+      },
+      {
+        heading: 'The question that actually decides it',
+        paragraphs: [
+          "Ignore the sales pitch for a moment and ask yourself one question: does your business have enough tax liability this year to actually use a 30% credit and an accelerated depreciation deduction? If yes, ownership — cash or loan — almost always wins on total return, and the loan-versus-cash choice becomes purely about how you'd rather manage your capital. If the honest answer is no — a newer business, a low-tax-liability year, a nonprofit with no tax bill at all — a lease or PPA can be the more realistic path to solar, because someone else using the tax benefits and passing along a discounted rate beats a business that can't use those benefits itself. Run the actual numbers side by side before deciding; don't let the financing structure get chosen by whichever contractor called first.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'solar-system-sizing-guide',
+    title: 'How to Size a Commercial Solar System Without Guessing',
+    excerpt: 'Oversize it and you waste roof and budget. Undersize it and you leave savings on the table.',
+    category: BLOG_CATEGORIES.SYSTEM,
+    illustration: 'rooftop-solar',
+    publishDate: '2026-07-03',
+    relatedCalculatorPaths: ['/solar-panel-size-calculator', '/roof-space-calculator'],
+    relatedPostSlugs: ['net-metering-explained', 'warehouse-solar-installation-guide'],
+    sections: [
+      {
+        paragraphs: [
+          "System sizing sounds like it should be simple — figure out how much power you use, build a system that makes that much. In practice, two things complicate that math: your roof might not have room for the ideal size, and your utility's export policy changes whether \"bigger than you need\" is even a good idea. Get sizing right and the rest of the financial model falls into place; get it wrong and you're either underdelivering on savings or paying for capacity you can't use well.",
+        ],
+      },
+      {
+        heading: 'Start from your usage, not your roof',
+        paragraphs: [
+          "The right starting point is your actual electricity consumption, not the available roof area. Pull 12 months of utility bills if you can — annual usage in kWh, and ideally how that usage is distributed across months, since a building with heavy summer cooling loads has a different ideal system size than one with flat year-round consumption. A system sized to your average monthly usage, with some margin for future growth, is the baseline before roof constraints or export economics enter the conversation.",
+        ],
+      },
+      {
+        heading: "Then check what your roof can actually hold",
+        paragraphs: [
+          "Once you know the target system size, the roof math determines whether it's achievable. A rough planning figure: standard commercial panels need about 18-20 square feet per installed kW once you account for spacing, mounting hardware, and required setbacks from roof edges and equipment. A roof crowded with HVAC units, skylights, and vents effectively loses that usable area — most planning estimates assume only 60-75% of raw roof square footage ends up usable after obstructions. If your target system size doesn't fit, you're choosing between a smaller system, a ground-mount supplement if land is available, or accepting a longer payback on a scaled-down design.",
+        ],
+      },
+      {
+        heading: "Oversizing isn't automatically wrong — it depends on net metering",
+        paragraphs: [
+          "If your utility offers strong 1-for-1 net metering, sizing a system modestly beyond your own consumption can make financial sense, since the surplus you export is credited near full retail value. If your utility instead pays a lower \"avoided cost\" rate for exports, oversizing stops paying for itself as efficiently, and the better strategy is usually sizing closer to your own load and maximizing self-consumption — potentially with battery storage to shift midday surplus into hours when you'd otherwise be buying from the grid. This single detail can change the \"right\" system size by 20-30% either direction.",
+        ],
+      },
+      {
+        heading: 'A sanity check before you commit',
+        paragraphs: [
+          "Before signing a proposal, ask your installer to walk you through three numbers explicitly: your actual annual usage, the proposed system's expected annual production, and what happens to any production beyond your usage under your specific utility's export rules. If a proposal can't clearly answer all three, that's a sign the sizing was built around what fits the roof rather than what fits your actual electricity needs and financial goals.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'npv-irr-solar-investment-analysis',
+    title: 'NPV and IRR for Solar: How CFOs Actually Evaluate the Investment',
+    excerpt: '"It pays for itself in 6 years" doesn\'t mean much to a finance team. Here is the language that does.',
+    category: BLOG_CATEGORIES.FINANCIAL,
+    illustration: 'financial-dashboard',
+    publishDate: '2026-07-08',
+    relatedCalculatorPaths: ['/solar-investment-calculator', '/commercial-solar-roi-calculator'],
+    relatedPostSlugs: ['how-commercial-solar-roi-is-calculated', 'commercial-solar-financing-explained'],
+    sections: [
+      {
+        paragraphs: [
+          "Simple payback period — how many years until utility savings recoup the cost — is the number most solar proposals lead with, and it's genuinely useful for a quick gut check. But if you're presenting a solar project alongside other capital requests to a finance team or a board, payback period alone tends to undersell the case, because it ignores something every other capital project on that list is judged by: the time value of money.",
+        ],
+      },
+      {
+        heading: "Why a dollar in year 20 isn't a dollar today",
+        paragraphs: [
+          "A simple payback calculation treats a dollar of savings in year one and a dollar of savings in year twenty as identical. Any finance team evaluating competing capital projects knows that's not how money actually works — a dollar available today can be invested, and a dollar promised in twenty years carries both inflation risk and opportunity cost. Net present value (NPV) and internal rate of return (IRR) are the two metrics that correct for this, and they're the language a CFO already uses to compare a solar project against a new piece of equipment, a facility expansion, or any other use of capital.",
+        ],
+      },
+      {
+        heading: 'NPV, in plain terms',
+        paragraphs: [
+          "Net present value discounts every future year's savings back to today's dollars using a chosen discount rate — often your company's cost of capital, or a hurdle rate finance uses for capital decisions — then subtracts your upfront net investment. A positive NPV means the project creates value above and beyond that discount rate; a negative NPV means it doesn't clear the bar, even if the simple payback period looked attractive. This is the number that answers \"is this actually a good use of our capital,\" not just \"does it eventually pay for itself.\"",
+        ],
+      },
+      {
+        heading: 'IRR, in plain terms',
+        paragraphs: [
+          "Internal rate of return is the discount rate at which a project's NPV works out to exactly zero — in other words, the annualized return the project effectively delivers over its life, expressed as a percentage you can directly compare against your other investment options. A commercial solar project with a well-structured tax position often produces a double-digit IRR, which is the number that makes it genuinely competitive against other capital projects a business might consider, not just \"a nice-to-have sustainability initiative.\"",
+        ],
+      },
+      {
+        heading: 'What actually drives these numbers for solar',
+        paragraphs: [
+          "Three things move NPV and IRR the most for a solar project: the discount rate you choose (a higher hurdle rate makes future savings worth less today, which lowers NPV), how quickly the tax credit and depreciation shield arrive (front-loaded benefits in years one and two boost both metrics meaningfully versus benefits spread evenly), and your assumed utility rate escalation (higher assumed inflation in electricity prices increases the value of savings in later years). When you're building the case internally, present the discount rate you used explicitly — finance teams will ask, and having already run the analysis at their preferred hurdle rate is far more persuasive than a payback-period slide alone.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'commercial-ev-charging-economics',
+    title: 'Commercial EV Charging: A Real Revenue and Payback Analysis',
+    excerpt: 'Installing chargers is easy. Making them pay for themselves depends on utilization you can actually get.',
+    category: BLOG_CATEGORIES.ENERGY,
+    illustration: 'clean-energy',
+    publishDate: '2026-07-13',
+    relatedCalculatorPaths: ['/commercial-ev-charging-calculator', '/commercial-demand-charge-calculator'],
+    relatedPostSlugs: ['demand-charges-explained', 'commercial-solar-financing-explained'],
+    sections: [
+      {
+        paragraphs: [
+          "Commercial EV charging gets pitched two ways: as a new revenue stream, or as a tenant/employee amenity that mostly pays for itself. Both can be true, but the financial case depends heavily on one number almost every rough estimate glosses over: how often those chargers actually get used, not how often you hope they will.",
+        ],
+      },
+      {
+        heading: 'Level 2 vs. DC fast charging is a completely different business model',
+        paragraphs: [
+          "A Level 2 charger is cheap to install and slow — appropriate for a workplace or retail lot where cars sit for hours, and the revenue model is usually a flat session fee or simply an amenity with no direct charge at all. A DC fast charger costs substantially more to install and interconnect, but delivers a full charge in 20-30 minutes, which supports a per-kWh or per-minute pricing model closer to a fuel station's economics. Comparing the installed cost of one against the other without accounting for this fundamentally different usage pattern is the single most common mistake in early EV charging proposals.",
+        ],
+      },
+      {
+        heading: "The demand charge risk nobody mentions upfront",
+        paragraphs: [
+          "Here's the detail that catches property owners off guard after installation, not before: DC fast chargers draw a lot of power in a short window, and if several vehicles charge simultaneously, that spike can set a new, much higher demand charge peak for your entire electric bill — the same demand charge mechanic that applies to any other equipment on your property. A charging station that looks profitable on a per-session basis can quietly get eaten by a demand charge increase that wasn't modeled into the original proposal. Any serious EV charging analysis needs to account for this alongside straightforward installation cost and session revenue.",
+        ],
+      },
+      {
+        heading: 'Utilization is the number that makes or breaks the model',
+        paragraphs: [
+          "A charger that sits empty 90% of the day generates close to nothing, no matter how good the per-session rate looks on paper. Realistic utilization depends heavily on location — a charger in a busy retail lot near a highway sees far more turnover than one in a low-traffic office park. Before committing to a specific charger count or type, get honest about expected daily sessions per charger, and build the payback estimate around a conservative utilization assumption, not an optimistic one. It's far easier to be pleasantly surprised by higher-than-expected usage than to explain why a six-figure installation isn't generating the revenue the pitch deck promised.",
+        ],
+      },
+      {
+        heading: 'Where solar and EV charging genuinely complement each other',
+        paragraphs: [
+          "Pairing EV charging with an on-site solar system can offset a meaningful share of the charging load with self-generated power, reducing the grid draw (and the demand charge exposure) that fast charging creates. It's not a requirement — plenty of standalone charging installations pencil out fine — but if you're already considering solar for a property, sizing it with EV charging load in mind, rather than treating them as two entirely separate projects, tends to produce a better combined result than evaluating each in isolation.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'commercial-solar-cost-breakdown',
+    title: 'What Solar Actually Costs: A Breakdown of Commercial Installation Pricing',
+    excerpt: 'Panels are a smaller line item than most people assume. Here is where the rest of the money goes.',
+    category: BLOG_CATEGORIES.FINANCIAL,
+    illustration: 'inspection',
+    publishDate: '2026-07-17',
+    relatedCalculatorPaths: ['/commercial-solar-cost-calculator', '/commercial-solar-roi-calculator'],
+    relatedPostSlugs: ['commercial-solar-financing-explained', 'solar-system-sizing-guide'],
+    sections: [
+      {
+        paragraphs: [
+          "Ask most people what makes up the cost of a commercial solar system, and they'll say \"the panels.\" In a typical turnkey installation, panels are usually a minority of total project cost — often somewhere around a quarter to a third. Knowing where the rest of the money actually goes makes it much easier to evaluate whether a quote is reasonable, and where there's genuine room to negotiate versus where the cost is essentially fixed.",
+        ],
+      },
+      {
+        heading: 'The equipment: panels, inverters, and racking',
+        paragraphs: [
+          "Solar panels themselves have gotten steadily cheaper over the past decade relative to total installed cost, which is exactly why they're no longer the majority line item people assume. Inverters — the equipment that converts the DC power panels produce into the AC power your building uses — are a meaningful cost on their own, and the choice between string inverters and microinverters/power optimizers affects both price and long-term performance monitoring. Racking and mounting hardware, which physically secures panels to a flat or sloped commercial roof, rounds out the core equipment cost and varies significantly based on roof type.",
+        ],
+      },
+      {
+        heading: 'Labor and installation: more variable than equipment',
+        paragraphs: [
+          "Installation labor cost swings more than equipment cost project to project, driven by roof accessibility, structural complexity, and local labor rates. A single-story warehouse with a simple flat roof and ground-level equipment staging installs faster and cheaper per watt than a multi-story building with rooftop access challenges. This is also where regional variation shows up most — the same system size can cost noticeably more in a high-labor-cost market than a lower-cost one.",
+        ],
+      },
+      {
+        heading: "Soft costs: the part quotes explain the least",
+        paragraphs: [
+          "Permitting, interconnection applications and utility fees, engineering and structural review, project design, and the EPC contractor's overhead and margin collectively make up what the industry calls \"soft costs\" — and they're frequently a larger share of total price than most customers expect, sometimes rivaling the equipment cost itself. These costs don't disappear on a bigger or smaller system in direct proportion; some are closer to fixed costs regardless of system size, which is part of why larger commercial systems tend to achieve a lower cost per watt than small ones — the soft costs get spread across more capacity.",
+        ],
+      },
+      {
+        heading: 'How to actually evaluate a quote',
+        paragraphs: [
+          "Ask for an itemized breakdown, not just a single all-in number — a contractor confident in their pricing should be able to show equipment, labor, and soft costs separately. Compare quotes on cost per watt, not total price alone, since system sizes vary between proposals. And be specific about what's included: some quotes bundle a full roof structural assessment and permitting into the price, others quote those as separate line items later. The lowest headline number isn't always the lowest actual cost once every line item is accounted for.",
+        ],
+      },
+    ],
+  },
 ]
 
 export const BLOG_POSTS = RAW_POSTS.map((post) => ({
